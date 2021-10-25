@@ -1,16 +1,92 @@
-<%- include('partials/header') %>
-
-
-  <div class="jumbotron centered">
-    <div class="container">
-      <i class="fa fa-users fa-6x"></i>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Warrior Gains</title>
+  <%- include('partials/header') %>
+</head>
+<body>
+  <div class="jumbotron">
+    <div class="container"> 
+      <!--<i class="fa fa-users fa-6x"></i>-->
       <h1 class="display-3">Warrior Gains!</h1>
-      <p class="lead">Join the Ultimate Fitness Social Media App for Students!</p>
-      <hr>
-      <a class="btn btn-light btn-lg" href="/register" role="button">Register</a>
-      <a class="btn btn-dark btn-lg" href="/login" role="button">Login</a>
+      <p class="lead">Join the Ultimate Fitness Social Media App for Wayne State Students!</p>
+      <hr> 
+      <a class="btn btn-light btn-lg" href="/register" role="button" id="register-btn">Register</a>
+      <a class="btn btn-dark btn-lg" href="/login" role="button" id="login-btn">Login</a>
 
     </div>
   </div>
+<style>
+  .display-3 {
+    font-size: 6rem;
+    font-weight: 700;
+    color: yellow;
+    background-color: green;
+    padding: 0 3rem;
+    margin-bottom: 5rem;
+    text-transform: uppercase;
+    letter-spacing: 1rem;
+    border-bottom: 0.3rem solid #fff;
+    text-shadow: 0.2rem 0.2rem 1rem #555;
+    transform: skew(-10deg); 
+  }
 
+  body {
+    background-color: gold;
+  }
+
+  .jumbotron {
+    background-color: green;
+    height: 90vh;
+  }
+
+  .lead {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #333;
+    background-color: #fff;
+    border: 0.3rem solid #333;
+    padding: 0.5rem 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3rem;
+    display: flex;
+    text-align: center;
+  }
+
+  #register-btn {
+    background-color: green;
+    color: yellow;
+    text-transform: uppercase;
+    letter-spacing: 1rem;
+    cursor: pointer;
+    justify-content: center;
+    display: flex;
+    border-color: green;
+  }
+
+  #login-btn {
+    background-color: green;
+    color: yellow;
+    text-transform: uppercase;
+    letter-spacing: 1rem;
+    cursor: pointer;
+    justify-content: center;
+    display: flex;
+    border-color: green;
+    
+  }
+
+  .fa {
+    justify-content: center;
+    display: flex;
+  }
+</style>
+
+<footer>
   <%- include('partials/footer') %>
+</footer>
+</body>
+</html>

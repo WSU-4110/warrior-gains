@@ -1,14 +1,23 @@
-<%- include('partials/header') %>
-    <div class="container mt-5">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <%- include('partials/header') %>
+</head>
+<body>
+    <!--<div class="container mt-5">
         <h1>Join Warrior Gains!</h1>
 
         <div class="row">
             <div class="col-sm-8">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body">-->
 
                         <!--  POST request to /register route -->
-                        <form action="/register" method="POST">
+                        <!--<form action="/register" method="POST">
 
                             <div class="form-group">
                                 <label for="fname">First Name</label>
@@ -39,6 +48,120 @@
 
 
         </div>
-    </div>
+    </div>-->
 
-    <%- include('partials/header') %>
+    <div class="section-register">
+        <h1 class="section-register-heading">Join Warrior Gains!</h1>
+
+        <!--<div class="row">
+            <div class="col-sm-8">
+                <div class="card"> 
+                    <div class="card-body">-->
+
+                        <!--  POST request to /register route -->
+                        <form action="/register" method="POST">
+
+                            <div class="register-form">
+                                <!--<label for="fname">First Name</label>-->
+                                <input type="text" class="form-control" name="fname" placeholder="Enter first name...">
+                            </div>
+                            <div class="register-form">
+                                <!--<label for="lname">Last Name</label>-->
+                                <input type="text" class="form-control" name="lname" placeholder="Enter last name...">
+                            </div>
+                            <div class="register-form">
+                                <!--label for="email">Email</!--label>-->
+                                <input type="email" class="form-control" name="username" placeholder="Enter a email...">
+                            </div>
+                            <div class="register-form">
+                                <!--<label for="password">Password</label>-->
+                                <input type="password" class="form-control" name="password" placeholder="Enter a password...">
+                            </div>
+                            <div class="form-group">
+                                <!--<label for="dob">Date of Birth:</label>-->
+                                <input type="date" class="form-control" name="dob" placeholder="Enter a date-of-birth...">
+                            </div>
+                            <button type="submit" id="register-form-btn">Register</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    <style>
+        body {
+            background-color: gold;
+        }
+
+        .section-register {
+            width: 100%;
+            height: 90vh;
+            background-color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+            background-color: green; 
+        }
+
+        .section-register-heading {
+            font-size: 6rem;
+            font-weight: 700;
+            color: yellow;
+            background-color: green;
+            padding: 0 3rem;
+            margin-bottom: 5rem;
+            text-transform: uppercase;
+            letter-spacing: 1rem;
+            border-bottom: 0.3rem solid #fff;
+            text-shadow: 0.2rem 0.2rem 1rem #555;
+            transform: skew(-10deg); 
+        }
+
+        .register-form {
+            width: 50rem;
+            flex-direction: column;
+            display: flex;
+        }
+
+        .register-form input,
+        .register-form textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            background-color: gainsboro;
+            font-size: 1.5rem; 
+            border: 0.2rem solid green;
+            color: #555;
+            display: flex;
+        }
+
+        .register-form textarea {
+            height: 10rem;
+            max-height: 15rem;
+            max-width: 100%;
+            display: flex;
+        }
+
+        #register-form-btn {
+            background-color: green;
+            color: yellow;
+            text-transform: uppercase;
+            letter-spacing: 1rem;
+            cursor: pointer;
+            justify-content: center;
+            display: flex;
+            border-color: green;
+
+        }
+        
+    </style>
+    <footer>
+        <%- include('partials/header') %>
+    </footer>
+</body>
+</html>
+
+    
