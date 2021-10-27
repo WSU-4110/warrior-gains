@@ -32,6 +32,9 @@ app.get("/login", function (req, res) {
 app.get("/register", function (req, res) {
     res.render("register")
 })
+app.get("/feed", function (req, res) {
+    res.render("feed")
+})
 
 // If the user is able to register successfully, they may have access to feed page
 app.post("/register", function (req, res) {
