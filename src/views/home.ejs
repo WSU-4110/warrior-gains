@@ -1,9 +1,11 @@
 <%- include('partials/header') %>
     
     <div class="container"> 
-      <!--<i class="fa fa-users fa-6x"></i>-->
+      
       <!--<section class="TextLayout homePage">-->
+
         <h1 class="display-3">Warrior Gains!</h1>
+
         <p class="lead">Join the Ultimate Fitness Social Media App for Wayne State Students!</p>
         <hr> 
       <!--</section>-->
@@ -16,9 +18,8 @@
         <a class="btn btn-light btn-lg" href="/register" role="button" id="register-btn">Register</a>
         
         <a class="btn btn-dark btn-lg" href="/login" role="button" id="login-btn">Login</a>
-      </div>
-        
-      <!--</nav>-->
+
+        <i class="fa fa-users fa-6x" style="font-size: 100px; display: flex; flex-direction: column; align-items: center;"></i>
     </div>
   
 <style>
@@ -30,6 +31,7 @@
     color: forestgreen;
     /*background-color: green;*/
     padding: 0 1rem;
+    /*padding-right: 4rem;*/
     margin-bottom: 2rem;
     text-transform: uppercase;
     letter-spacing: 1rem;
@@ -51,6 +53,7 @@
     #homeImage {
       width: 75%;
       height: 60vh;
+      overflow: hidden;
       background-position: center;
       background-image: linear-gradient(
         rgba(255, 255, 255, 0.2),
@@ -61,11 +64,13 @@
       flex-direction: column;
       justify-content: right;
       float: right;
-      transition: ease-in;
-      animation: ease-in;
+      /*transition: ease-in;
+      animation: ease-in;*/
       display: flex;
       object-fit: cover;
-      /*object-position: center;*/
+      object-position: center;
+      /*margin-left: 300px;*/
+      /*padding-right: 4rem;*/
     }
 
 
@@ -94,11 +99,15 @@
     cursor: pointer;
     justify-content: center;
     display: flex;
+    flex-direction: row;
+    /*flex: 50%;*/
     border-color: forestgreen;
-    float: left;
+    /*float: left;*/
     margin-top: 0px;
     margin-left: 0px;
     margin-right: -100px;
+    width: 252px;
+    /*max-width: 300px;*/
   }
 
   /*This contains style for login button*/
@@ -110,17 +119,25 @@
     cursor: pointer;
     justify-content: center;
     display: flex;
+    /*flex: 50%;*/
+    flex-direction: row;
     border-color: forestgreen;
     margin-right: 1rem;
-    float: left;
+    /*float: left;*/
     margin-top: 10px;
     margin-left: 0px;
     margin-right: -50px;
     width: 252px;
+    /*max-width: 300px;*/
     
+  }
+  /*This includes style for icon*/
+  .fa{
+    margin-top: 30px;
   }
   
 </style>
+
 
 
 <%- include('partials/footer') %>
