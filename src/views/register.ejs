@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <%- include('partials/header') %>
-</head>
-<body>
+<%- include('partials/header') %>
+
     <!--<div class="container mt-5">
         <h1>Join Warrior Gains!</h1>
-
         <div class="row">
             <div class="col-sm-8">
                 <div class="card">
@@ -18,7 +9,6 @@
 
                         <!--  POST request to /register route -->
                         <!--<form action="/register" method="POST">
-
                             <div class="form-group">
                                 <label for="fname">First Name</label>
                                 <input type="text" class="form-control" name="fname">
@@ -41,41 +31,33 @@
                             </div>
                             <button type="submit" class="btn btn-dark">Register</button>
                         </form>
-
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>-->
 
     <div class="section-register">
         <h1 class="section-register-heading">Join Warrior Gains!</h1>
 
-        <!--<div class="row">
-            <div class="col-sm-8">
-                <div class="card"> 
-                    <div class="card-body">-->
-
                         <!--  POST request to /register route -->
                         <form action="/register" method="POST">
 
                             <div class="register-form">
                                 <!--<label for="fname">First Name</label>-->
-                                <input type="text" class="form-control" name="fname" placeholder="Enter first name...">
+                                <input type="text" class="form-control" name="fname" placeholder="First Name"> 
                             </div>
                             <div class="register-form">
                                 <!--<label for="lname">Last Name</label>-->
-                                <input type="text" class="form-control" name="lname" placeholder="Enter last name...">
+                                <input type="text" class="form-control" name="lname" placeholder="Last Name">
                             </div>
                             <div class="register-form">
                                 <!--label for="email">Email</!--label>-->
-                                <input type="email" class="form-control" name="username" placeholder="Enter a email...">
+                                <input type="email" class="form-control" name="username" placeholder="Email">
                             </div>
                             <div class="register-form">
                                 <!--<label for="password">Password</label>-->
-                                <input type="password" class="form-control" name="password" placeholder="Enter a password...">
+                                <input type="password" class="form-control" name="password" placeholder="Password">
                             </div>
                             <div class="form-group">
                                 <!--<label for="dob">Date of Birth:</label>-->
@@ -84,48 +66,53 @@
                             <button type="submit" id="register-form-btn">Register</button>
                         </form>
 
-                    </div>
+                    </div> 
                 </div>
             </div>
 
 
         </div>
     <style>
+        /*This contains style for body*/
         body {
-            background-color: gold;
+            background-color: gainsboro;
         }
 
+        /*This contains style for background*/
         .section-register {
             width: 100%;
-            height: 90vh;
+            height: 100vh;
             background-color: #333;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: space-evenly;
-            background-color: green; 
+            background-color: gainsboro; 
         }
 
+        /*This contains style for "Join Warrior Gains"*/
         .section-register-heading {
-            font-size: 6rem;
+            font-size: 3rem;
             font-weight: 700;
-            color: yellow;
-            background-color: green;
-            padding: 0 3rem;
-            margin-bottom: 5rem;
+            color: forestgreen;
+            /*background-color: green;*/
+            padding: 0 1rem;
+            margin-bottom: -5rem;
             text-transform: uppercase;
             letter-spacing: 1rem;
-            border-bottom: 0.3rem solid #fff;
-            text-shadow: 0.2rem 0.2rem 1rem #555;
+            /*border-bottom: 0.3rem solid #fff;
+            text-shadow: 0.2rem 0.2rem 1rem #555;*/
             transform: skew(-10deg); 
         }
 
+        /*This contains style for register forms*/
         .register-form {
-            width: 50rem;
+            width: 25rem;
             flex-direction: column;
             display: flex;
         }
 
+        /*This contains style for register forms input and text area*/
         .register-form input,
         .register-form textarea {
             width: 100%;
@@ -133,11 +120,13 @@
             margin: 0.5rem 0;
             background-color: gainsboro;
             font-size: 1.5rem; 
-            border: 0.2rem solid green;
+            border: 0.2rem solid forestgreen;
             color: #555;
             display: flex;
+            /*float: left;*/
         }
 
+        /*This expands input for register textarea styling*/
         .register-form textarea {
             height: 10rem;
             max-height: 15rem;
@@ -145,23 +134,29 @@
             display: flex;
         }
 
+        /*This contains styling for register button*/
         #register-form-btn {
-            background-color: green;
-            color: yellow;
+            background-color: forestgreen;
+            color: gainsboro;
             text-transform: uppercase;
             letter-spacing: 1rem;
             cursor: pointer;
             justify-content: center;
             display: flex;
-            border-color: green;
-
+            text-align: center;
+            border-color: gainsboro;
+            /*margin: 0;*/
+            /*position: absolute;*/
+            top: 80%;
+            /*left: 80%;*/
+            margin-left: 180px;
+            margin-top: 20px;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
         }
         
     </style>
-    <footer>
-        <%- include('partials/header') %>
-    </footer>
-</body>
-</html>
+    
+<%- include('partials/header') %>
 
     
