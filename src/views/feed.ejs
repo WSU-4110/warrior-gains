@@ -1,7 +1,8 @@
+
 <%- include('partials/header') %>
 
 
-    <div class="jumbotron text-center">
+<%/* <div class="jumbotron text-center">
         <div class=container>
             <i class="fa fa-users fa-6x"></i>
             <h1 class="display-3"></h1>
@@ -10,6 +11,104 @@
             <a class="btn btn-light btn-lg" href="/logout" role="button">Log Out</a>
             <a class="btn btn-dark btn-lg" href="/submit" role="button">Submit</a>
         </div>
-    </div>
+    </div> */%>
 
     <%- include('partials/footer') %>
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Feed</title>
+        <style>
+
+            body{
+                background-color: #E2FEFE;
+            }
+
+            .nav{
+                background-color: #0088B4;
+
+            }
+            
+            div.nav ul{
+                list-style-type: none;
+                margin-top:2%;
+                margin-left:5%;
+                
+            }
+
+            div.nav ul li{
+                
+                background-color: black;
+                float:left;
+            }
+
+            div.nav ul li a{
+                display: block;
+                text-decoration: none;
+                color: white;
+                padding: 12px 12px;
+            }
+
+            div.nav ul li a:hover{
+                background-color: green;
+            }
+
+            div.nav form{
+                margin-top:3%;
+                margin-left:5%;
+                margin-right:5%;
+            }
+
+            div.nav form input{
+                height:30px;
+                width:600px;
+            }
+
+            div.nav a{
+                display: block;
+                background-color: black;
+                text-decoration: none;
+                color: white;
+                margin-top:2%;
+                margin-bottom:2%;
+                padding: 12px 12px;
+            }
+
+            div.nav a:hover{
+                background-color:green;
+            }
+            
+    
+        </style>
+        
+    </head>
+    <body>
+
+        <div class="nav">
+
+            <ul>
+                <li><a href="#home">Home</a></li>
+                
+            </ul>
+
+            <form>
+                <input type="text" placeholder="Type to search.." name="search">
+            </form>
+
+            <a href="#friends">Friends</a>
+            <a href="#inbox">Inbox</a>
+            <a href="#settings">Settings</a>
+            
+
+        </div>
+        
+        
+        
+         
+    </body>
+    </html>
+  
