@@ -1,16 +1,126 @@
 <%- include('partials/header') %>
-
-
-  <div class="jumbotron centered">
-    <div class="container">
-      <i class="fa fa-users fa-6x"></i>
-      <h1 class="display-3">Warrior Gains!</h1>
-      <p class="lead">Join the Ultimate Fitness Social Media App for Students!</p>
-      <hr>
-      <a class="btn btn-light btn-lg" href="/register" role="button">Register</a>
-      <a class="btn btn-dark btn-lg" href="/login" role="button">Login</a>
-
+    
+    <div class="container"> 
+      <!--<i class="fa fa-users fa-6x"></i>-->
+      <!--<section class="TextLayout homePage">-->
+        <h1 class="display-3">Warrior Gains!</h1>
+        <p class="lead">Join the Ultimate Fitness Social Media App for Wayne State Students!</p>
+        <hr> 
+      <!--</section>-->
+      
+      <section class="homeImage">
+        <img src="https://source.unsplash.com/collection/2063595" id="homeImage">
+      </section>
+      <!--<nav class="ButtonLayout">-->
+      <div class="ButtonLayout"> 
+        <a class="btn btn-light btn-lg" href="/register" role="button" id="register-btn">Register</a>
+        
+        <a class="btn btn-dark btn-lg" href="/login" role="button" id="login-btn">Login</a>
+      </div>
+        
+      <!--</nav>-->
     </div>
-  </div>
+  
+<style>
 
-  <%- include('partials/footer') %>
+  /*This contains style for "Warrior Gains"*/
+  .display-3 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: forestgreen;
+    /*background-color: green;*/
+    padding: 0 1rem;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 1rem;
+    /*border-bottom: 0.3rem solid gainsboro;*/
+    /*text-shadow: 0.2rem 0.2rem 1rem #555;*/ 
+    transform: skew(-10deg); 
+    text-align: center;
+    /*float: left;*/
+  }
+
+  /*This contains style for body*/
+  body {
+    background-color: gainsboro;
+    /*height: 100%;*/
+    
+  }
+
+  /*This contains style for Unsplash API Images*/
+    #homeImage {
+      width: 75%;
+      height: 60vh;
+      background-position: center;
+      background-image: linear-gradient(
+        rgba(255, 255, 255, 0.2),
+        rgba(255, 255, 255, 0.3)
+      ),
+       center no-repeat;
+      background-size: cover;
+      flex-direction: column;
+      justify-content: right;
+      float: right;
+      transition: ease-in;
+      animation: ease-in;
+      display: flex;
+      object-fit: cover;
+      /*object-position: center;*/
+    }
+
+
+    /*This contains style for "Join the Ultimate Fitness Social Media App for Wayne State Students!"*/
+  .lead {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #333;
+    background-color: #fff;
+    border: 0.3rem solid #333;
+    padding: 0.2rem 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3rem;
+    display: flex;
+    text-align: center;
+    width: 100%;
+    float: left;
+  }
+
+  /*This contains style for register button*/
+  #register-btn {
+    background-color: forestgreen;
+    color: gainsboro;
+    text-transform: uppercase;
+    letter-spacing: 1rem;
+    cursor: pointer;
+    justify-content: center;
+    display: flex;
+    border-color: forestgreen;
+    float: left;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: -100px;
+  }
+
+  /*This contains style for login button*/
+  #login-btn {
+    background-color: forestgreen;
+    color: gainsboro;
+    text-transform: uppercase;
+    letter-spacing: 1rem;
+    cursor: pointer;
+    justify-content: center;
+    display: flex;
+    border-color: forestgreen;
+    margin-right: 1rem;
+    float: left;
+    margin-top: 10px;
+    margin-left: 0px;
+    margin-right: -50px;
+    width: 252px;
+    
+  }
+  
+</style>
+
+
+<%- include('partials/footer') %>
