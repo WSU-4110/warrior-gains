@@ -1,15 +1,161 @@
+
 <%- include('partials/header') %>
 
 
-    <div class="jumbotron text-center">
-        <div class=container>
-            <i class="fa fa-users fa-6x"></i>
-            <h1 class="display-3"></h1>
-            <p class="secret-text"></p>
-            <hr>
-            <a class="btn btn-light btn-lg" href="/logout" role="button">Log Out</a>
-            <a class="btn btn-dark btn-lg" href="/submit" role="button">Submit</a>
-        </div>
-    </div>
+        <div class="nav">
 
-    <%- include('partials/footer') %>
+            
+                <a class="btn btn-dark btn-lg" role="button" href="#home">Home</a>
+                <a class="btn btn-dark btn-lg" role="button" href="#friends">Find Friends</a>
+                
+            
+
+            <form>
+                <input type="text" placeholder="Search Warrior Gains" name="search">
+            </form>
+
+            
+            <a class="btn btn-dark btn-lg" role="button" href="#inbox">Inbox</a>
+            <a class="btn btn-dark btn-lg" role="button"  href="#settings">Settings</a>
+            <a class="btn btn-dark btn-lg" role="button" href="/">Log Out</a>
+
+            
+
+        </div>
+
+        <div class="findfriends">
+            <h5>Add Friends</h3>
+
+        </div>
+
+        <div class="post">
+            <h5>Have Something On Mind? Share it.</h3>
+
+        </div>
+
+        <div class="online">
+            <h5>Online</h3>
+
+        </div>
+
+        
+        <style>
+
+            body{
+                background-color: gainsboro;
+                
+            }
+
+            .nav{
+                background-color: green;
+                margin-left:auto;
+                margin-right:auto;
+                
+                
+                
+                
+
+            }
+            
+            
+            div.nav form{
+                margin-top:0.2%;
+                margin-left:5%;
+                margin-right:5%;
+            }
+
+            div.nav form input{
+                display:flex;
+                flex-direction: column;
+                height:35px;
+                width:650px;
+               border-radius: 15px;
+               border:none;
+                
+            }
+
+            div.nav a{
+                display: block;
+                background-color: black;
+                text-decoration: none;
+                text-align:center;
+                font-family: Arial,Helvetica,sans-serif;
+                font-size: 18px;
+                color: white;
+                margin-top:0.5%;
+                margin-bottom:0.5%;
+                margin-left:1.5%;
+                padding-top:0.1px;
+                padding-left:2px;
+                padding-right:5px;
+                padding-bottom:0.1px;
+
+                
+            }
+
+            div.nav a:hover{
+                background-color:gainsboro;
+                color:black;
+            }
+
+            .findfriends{
+                
+                width:200px;
+                height:800px;
+                float:left;
+                padding-top:20px;
+                text-align:center;
+                
+            }
+
+            div.findfriends h5{
+                text-align:center;
+                background-color: lightyellow;
+                
+                margin:2%;
+                border-radius: 2px;
+            }
+
+            .post{
+               
+                width:850px;
+                height:800px;
+                float:left;
+                background-color: lightgray;
+                text-align:center;
+                padding-top:20px;
+            }
+
+            
+
+
+
+            .online{
+                
+                width:200px;
+                height:800px;
+                float:left;
+                padding-top:20px;
+                text-align:center;
+                
+
+
+            }
+
+            div.online h5{
+                text-align:center;
+                background-color: lightyellow;
+                
+                margin:3%;
+                border-radius: 2px;
+            }
+            
+    
+        </style>
+        
+        
+        
+         
+        <%- include('partials/footer') %>
+
+  
