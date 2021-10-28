@@ -1,7 +1,9 @@
+require('dotenv').config()
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs")
 const mongoose = require("mongoose");
+const encrypt = require("mongoose-encryption");
 
 const app = express();
 
@@ -11,16 +13,24 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+// Create database using MongoDB to store user's name, email, password, and date of birth.
 mongoose.connect("mongodb://localhost:27017/userDB", { useNewUrlParser: true });
-const userSchema = {
+
+const userSchema = new mongoose.Schema({
     email: String,
     password: String,
     fname: String,
-    lname: String
-};
+    lname: String,
+    dob: Date
+});
+
+// secret key used to aid with encryption on mongoose
+// Encrypt only the password field
+userSchema.plugin(encrypt, { secret: process.env.SECRET, encryptedFields: ["password"] });
 
 const User = new mongoose.model("User", userSchema)
 
+// Routes for users to traverse the webpage
 app.get("/", function (req, res) {
     res.render("home")
 })
@@ -47,6 +57,7 @@ app.post("/register", function (req, res) {
         dob: req.body.dob
     });
 
+
     newUser.save(function (err) {
         if (err) {
             console.log(err);
@@ -56,6 +67,7 @@ app.post("/register", function (req, res) {
     });
 })
 
+// If the user is able to loging with email and password, they will be redirected to feed page
 app.post("/login", function (req, res) {
     const username = req.body.username;
     const password = req.body.password;
