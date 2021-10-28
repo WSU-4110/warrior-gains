@@ -43,8 +43,11 @@ app.get("/register", function (req, res) {
     res.render("register")
 })
 
-// If the user is able to register successfully, they have access to feed page
-// newUser takes on the values required to register
+app.get("/profile", function (req, res) {
+    res.render("profile")
+})
+
+// If the user is able to register successfully, they may have access to feed page
 app.post("/register", function (req, res) {
     const newUser = new User({
         fname: req.body.fname,
