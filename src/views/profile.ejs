@@ -3,15 +3,38 @@
 
 <div class="container">
     <div class="nav">      
-        <a class="btn btn-dark btn-lg" role="button" href="/feed">Home</a>
-        <a class="btn btn-dark btn-lg" role="button" href="#friends">Find Friends</a>
-        <form>
-        <input type="text" placeholder="Search Warrior Gains" name="search">
-        </form>
-        <a class="btn btn-dark btn-lg" role="button" href="#inbox">Inbox</a>
-        <a class="btn btn-dark btn-lg" role="button"  href="/profile">Profile</a>
-        <a class="btn btn-dark btn-lg" role="button"  href="#settings">Settings</a>
-        <a class="btn btn-dark btn-lg" role="button" href="/">Log Out</a>
+            <!--Opy include these logos to replace texts-->
+            <!--<i class="fas fa-house-user"></i>
+            <i class="fas fa-users"></i>
+            <i class="fas fa-envelope-square"></i>
+            <i class="far fa-user-circle"></i>
+            <i class="fas fa-cog"></i>-->
+
+            <!--<section id="rightSideLinks">-->
+            
+                <div class="dropdown">
+                    <button class="dropbtn">Settings</button>
+                    <div class="dropdown-content">
+                        <a class="btn btn-dark btn-lg" role="button" href="/">Log Out</a>
+                    </div>
+                </div>
+                <!--<a type="submit" class="btn btn-dark btn-lg" role="button"  href="#settings">Settings</a>-->
+                <a type="submit" class="btn btn-dark btn-lg" role="button"  href="/profile">Profile</a>
+                <a type="submit" class="btn btn-dark btn-lg" role="button" href="#inbox">Inbox</a>
+                <a type="submit" class="btn btn-dark btn-lg" role="button" href="#friends">Friends</a>
+                <a type="submit" class="btn btn-dark btn-lg" role="button" href="#home">Home</a>
+                
+                
+                
+            <!--</section>-->
+                
+            <div class="search-bar">
+                <form>
+                    <input type="text" placeholder="Search Warrior Gains" name="search">
+                    <a type=""><i class="fa fa-search"></i></a>
+                </form>
+            </div>
+            
     </div>
         <h1> @username</h1>
 </div>
@@ -95,9 +118,163 @@
         background-color: gainsboro;
     }
 
-  .list-group-item{
-   background-color: rgb(238, 245, 233);
-  }  
+    .list-group-item{
+        background-color: rgb(238, 245, 233);
+    }  
+
+    .nav{
+        /*background-color: forestgreen;
+        margin-left:auto;
+        margin-right:auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;*/
+        /*height: 50px;*/
+
+        overflow: hidden;
+        background-color: gainsboro;
+
+    }
+    
+    
+    div.nav form{
+        margin-top:0.2%;
+        margin-left:5%;
+        margin-right:5%;
+
+        display: flex;
+        flex: 20%;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        height: 40px;
+
+    }
+
+    .nav a {
+        /*height: 40px;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        flex: space-evenly;
+        flex: 20%;*/
+
+        float: right;
+        display: block;
+        color: black;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+    }
+
+    .nav a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    .nav a.active {
+        background-color: forestgreen;
+        color: white;
+    }
+
+    .nav button {
+        /*height: 40px;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        flex: space-evenly;
+        flex: 20%;*/
+
+        float: right;
+        display: block;
+        color: black;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+    }
+
+    .nav button:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    .nav button.active {
+        background-color: forestgreen;
+        color: white;
+    }
+
+    .nav .search-bar {
+        float: left;
+    }
+
+    .nav input[type=text] {
+        padding: 6px;
+        margin-top: 8px;
+        font-size: 17px;
+        border: none;
+    }
+
+    .nav .search-bar button {
+        float: left;
+        padding: 6px 10px;
+        margin-top: 8px;
+        margin-right: 16px;
+        background: #ddd;
+        font-size: 17px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .nav .search-bar button:hover {
+        background: #ccc;
+    }
+
+    .dropbtn {
+        background-color: gainsboro;
+        color: gainsboro;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        float: right;
+    }
+
+    .dropdown {
+        position: relative;
+        float: right;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: gainsboro;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        float: right;
+    }
+
+    .dropdown-content a {
+        color: black;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {
+        background-color: gainsboro;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: flex;
+        text-align: center;
+    }
+
+    .dropdown:hover .dropbtn {
+        background-color: gainsboro;
+    }
 
 </style>
    
