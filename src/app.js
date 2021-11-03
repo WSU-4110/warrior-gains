@@ -1,9 +1,9 @@
-require('dotenv').config()
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs")
 const mongoose = require("mongoose");
-const encrypt = require("mongoose-encryption");
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const app = express();
 
@@ -24,9 +24,7 @@ const userSchema = new mongoose.Schema({
     dob: Date
 });
 
-// secret key used to aid with encryption on mongoose
-// Encrypt only the password field
-userSchema.plugin(encrypt, { secret: process.env.SECRET, encryptedFields: ["password"] });
+
 
 const User = new mongoose.model("User", userSchema)
 
@@ -50,25 +48,30 @@ app.get("/profile", function (req, res) {
 
 // If the user is able to register successfully, they may have access to feed page
 app.post("/register", function (req, res) {
-    const newUser = new User({
-        fname: req.body.fname,
-        lname: req.body.lname,
-        email: req.body.username,
-        password: req.body.password,
-        dob: req.body.dob
-    });
+
+    // Hash and salt password for 10 rounds to generate a secure hash
+    bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
+        const newUser = new User({
+            fname: req.body.fname,
+            lname: req.body.lname,
+            email: req.body.username,
+            password: hash,
+            dob: req.body.dob
+        });
 
 
-    newUser.save(function (err) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.render("feed")
-        }
+        newUser.save(function (err) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.render("feed")
+            }
+        });
     });
+
 })
 
-// If the user is able to loging with email and password, they will be redirected to feed page
+// If the user is able to login with email and password, they will be redirected to feed page
 app.post("/login", function (req, res) {
     const username = req.body.username;
     const password = req.body.password;
@@ -78,9 +81,13 @@ app.post("/login", function (req, res) {
             console.log(err);
         } else {
             if (foundUser) {
-                if (foundUser.password === password) {
-                    res.render("feed")
-                }
+                // compare hash of login password to registered password's hash after salting
+                bcrypt.compare(password, foundUser.password, function (err, result) {
+                    if (result === true) {
+                        res.render("feed");
+                    }
+                });
+
             }
         }
     })
