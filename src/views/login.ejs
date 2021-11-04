@@ -8,49 +8,16 @@
         <div class="form-control">
             <label for="">Email</label>
             <input type="email" name="username" placeholder="Email" /> 
-            <small>Error Message</small>
+            
 
             <label for="">Password</label>
             <input type="password" id="password" name="password" placeholder="Enter Password" />
-            <small>Error Message</small>
+            
 
           <!-- Eye Icon -->
           <span class="show-pass">
-            <i class="fas fa-eye" id="eye"></i>
+            <i class="fas fa-eye" id="eye"></i> 
           </span>
-
-          <!-- Progress Bar -->
-          <div class="progress">
-            <div class="progress-bar" id="password-strength"></div>
-          </div>
-
-          <!-- List -->
-          <ul class="form-list">
-            <li>
-              <span class="low-upper-case">
-                <i class="fas fa-circle"></i>
-                &nbsp; Lowercase & Uppercase
-              </span>
-            </li>
-            <li>
-              <span class="number">
-                <i class="fas fa-circle"></i>
-                &nbsp; Number (0-9)
-              </span>
-            </li>
-            <li>
-              <span class="special-char">
-                <i class="fas fa-circle"></i>
-                &nbsp; Special Character (!@#$%^&*)
-              </span>
-            </li>
-            <li>
-              <span class="eight-char">
-                <i class="fas fa-circle"></i>
-                &nbsp; At least 8 Character
-              </span>
-            </li>
-          </ul>
         </div>
 
         <button>Submit</button>
@@ -172,29 +139,6 @@
         font-size: 1.4rem; 
       }
 
-
-      /*This contains styles for for-control focusing*/
-      .form-control input:focus {
-        border-color: rgba(0, 0, 0, 0.2);
-      }
-
-      .form-control.success input {
-        border-color: green;
-      }
-      .form-control.error input {
-        border-color: red;
-      }
-
-
-      /*This contains further styles for form-control text*/
-      .form-control small {
-        color: red;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        visibility: hidden;
-      }
-
       /*This contains styles for form-control small icons and text*/
       .form-control.error small {
         visibility: visible;
@@ -218,7 +162,7 @@
       /*This contains style for eye icon*/
       .show-pass {
         position: absolute;
-        top: 40%;
+        top: 68%;
         right: 5%;
       }
 
@@ -252,27 +196,9 @@
         list-style-type: none;
       }
 
-      .pb-danger {
-        background-color: red;
-      }
-      .pb-warning {
-        background-color: yellow;
-      }
-      .pb-primary {
-        background-color: var(--light-blue);
-      }
-      .pb-success {
-        background-color: green;
-      }
-
-
       /*This contains styles for form circle*/
       .fa-circle {
         font-size: 6px;
-      }
-
-      .fa-check {
-        color: #02b502; 
       }
 
   </style>
@@ -345,7 +271,7 @@
       }
       
       // Update progress bar
-      if (strength == 1) {
+      /*if (strength == 1) {
         removePassStrength();
         passwordStrength.classList.add("pb-danger");
         passwordStrength.style = "width: 25%";
@@ -361,18 +287,18 @@
         removePassStrength();
         passwordStrength.classList.add("pb-success");
         passwordStrength.style = "width: 100%";
-      }
+      }*/
     }
 
     // Remove password strength classes
-    function removePassStrength() {
+    /*function removePassStrength() {
       passwordStrength.classList.remove(
         "pb-danger",
         "pb-warning",
         "pb-primary",
         "pb-success"
       );
-    }
+    }*/
 
     // Add Check Icon
     function addCheck(charRequired) {
