@@ -1,0 +1,112 @@
+<%- include('partials/header') %>
+<nav>
+  <div class="nav-left">
+      <h1 class="logo">Warrior Gains</h1>
+      <ul>
+          
+          <!--<li><img src="/notification.png" ></li>-->
+          <li><i class="far fa-bell"></i></li>
+          <!--<li><img src="/inbox.png" ></li>-->
+          <li><i class="fas fa-inbox"></i></li>
+          <!--<li><img src="/video.png" ></li>-->
+          <li><i class="fas fa-video"></i></li>
+      </ul>
+  </div>
+  <div class="nav-right">
+      <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Search">
+      </div>
+
+      <div class="nav-user-icon online">
+           <i class="fas 1`fa-users"></i>
+
+      
+      <a class="btn btn-dark btn-lg" role="button" href="/" id="logOut"><i class="fas fa-sign-out-alt"></i>Log Out</a>
+  </div>
+</nav>
+
+<h2>Edit your profile</h2>
+<form action="/profile" method="POST">
+  <div class="form-group">
+    <label for="Username">Username:</label>
+    <input type="text" class="form-control" name="Username" id="Username" placeholder="Username">
+  </div>
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" name="Name<" id="Name<" placeholder="Name">
+  </div>
+  <div class="form-group">
+    <label for="Bio">Bio</label>
+    <input type="text" class="form-control" name="Bio" id="Bio" placeholder="Bio">
+  </div>
+  <div class="form-group">
+    <label for="Link">Link:</label>
+    <input type="text" class="form-control" name="Link" id="Link" placeholder="Link">
+  </div>
+  <button class="btn btn-primary">Update</button>
+</form>
+<style>
+   nav {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                background: gainsboro;
+                padding: 5px 5%;
+                position: sticky;
+                top: 0;
+                z-index: 100; 
+            }
+
+            .nav-left, .nav-right {
+                display: flex;
+                align-items: center;
+                
+            }
+
+            .nav-left ul li {
+                list-style: none;
+                display: inline-block;
+            }
+
+            .nav-left ul li i {
+                width: 28px;
+                margin: 0 15px;
+            }
+
+            .nav-user-icon i {
+                width: 40px;
+                border-radius: 50%;
+                cursor: pointer;
+            }
+
+            .nav-user-icon {
+                margin-left: 30px;
+            }
+
+            .search-box {
+                background: #F2F3E9;
+                width: 350px;
+                border-radius: 20px;
+                display: flex;
+                align-items: center;
+                padding: 0 15px;
+            }
+
+            .search-box i {
+                width: 18px;
+
+            }
+
+            .search-box input {
+                width: 100%;
+                background: transparent;
+                padding: 10px;
+                outline: none;
+                border: 0;
+            }
+      
+</style>
+
+
+<%- include('partials/footer') %>
