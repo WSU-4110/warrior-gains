@@ -6,6 +6,10 @@ const session = require('express-session');
 const passport = require('passport');
 const passportLocalMongoose = require("passport-local-mongoose");
 
+
+
+const ObjectId = require('mongodb').ObjectId;
+
 const app = express();
 
 app.use(express.static("public"));
@@ -23,11 +27,14 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.json());
+
 
 // Create database using MongoDB to store user's name, email, password, and date of birth.
 mongoose.connect("mongodb://localhost:27017/userDB", { useNewUrlParser: true });
 
 
+const Schema = mongoose.Schema;
 const userSchema = new mongoose.Schema({
     email: String,
     password: String,
@@ -40,6 +47,7 @@ const userSchema = new mongoose.Schema({
 userSchema.plugin(passportLocalMongoose)
 
 const User = new mongoose.model("User", userSchema)
+module.export = User;
 
 // Simplified Passport/Passport-Local Configuration
 passport.use(User.createStrategy());
@@ -59,9 +67,16 @@ app.get("/login", function (req, res) {
 app.get("/register", function (req, res) {
     res.render("register")
 })
+///---------------------------------------------------------------------------------------------------------
 
-app.get("/profile", function (req, res) {
-    res.render("profile")
+app.get('/profile', function(req, res, next) {
+
+    var user = req.user;
+    res.render('profile', { title: 'profile', user: req.user });
+});
+
+app.get("/edit", function (req, res) {
+    res.render("edit")
 })
 
 app.get("/feed", function (req, res) {
