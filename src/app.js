@@ -44,8 +44,13 @@ const User = new mongoose.model("User", userSchema)
 // Simplified Passport/Passport-Local Configuration
 passport.use(User.createStrategy());
 
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+passport.serializeUser(function (user, done) {
+    done(null, user);
+});
+
+passport.deserializeUser(function (user, done) {
+    done(null, user);
+});
 
 // Routes for users to traverse the webpage
 app.get("/", function (req, res) {
@@ -94,23 +99,28 @@ app.post("/register", function (req, res) {
 })
 
 // If the user is able to login with email and password, they will be redirected to feed page
-app.post("/login", function (req, res) {
-    const user = new User({
-        username: req.body.username,
-        password: req.body.password
-    });
 
-    req.login(user, function (err) {
-        if (err) {
-            console.log(err);
-        } else {
-            passport.authenticate("local")(req, res, function () {
-                res.redirect("/feed");
-            });
-        }
-    });
-});
+// app.post("/login", function (req, res) {
+//     const user = new User({
+//         username: req.body.username,
+//         password: req.body.password
+//     });
 
+//     req.login(user, function (err) {
+//         if (err) {
+//             console.log(err);
+//         } else {
+//             passport.authenticate("local")(req, res, function () {
+//                 res.redirect("/feed");
+//             });
+//         }
+//     });
+// });
+
+app.post('/login', passport.authenticate('local', {
+    successRedirect: '/feed',
+    failureRedirect: '/login'
+}));
 
 app.listen(3000, function () {
     console.log("Server started on port 3000.")
