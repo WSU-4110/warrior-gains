@@ -443,7 +443,9 @@
     }
 
     today = yyyy + '-' + mm + '-' + dd;
-    document.getElementById("dob").setAttribute("max", today);
+    // document.getElementById("dob").setAttribute("max", today); 
+    // Could set max date available to 18 years ago from today
+
 
     // Event listener to make sure user inputs in form are valid
     form.addEventListener('submit', e => {
@@ -511,8 +513,7 @@
       if (dobValue > today) {
         setFormError(dob, "All users must be 18 years or older in order to register.")
         e.preventDefault();
-      }
-      else if (dobValue == null || dobValue == '') {
+      } else if (dobValue == null || dobValue == '') {
         setFormError(dob, "Whats's your date of birth?")
         e.preventDefault();
       } else {
@@ -527,14 +528,12 @@
 
       small.innerText = message;
       formControl.className = 'form-control error'
-
     };
 
     // form-control success, a class modification if input parameters are valid
     function setFormSuccess(input) {
       const formControl = input.parentElement;
       formControl.className = 'form-control success'
-
     };
 
     // verify email entered is valid
