@@ -175,8 +175,8 @@
 
     /*This contains styles for form-control class*/
     .form-control {
-      margin-bottom: 1rem;
-      padding-bottom: 1.5rem;
+      margin-bottom: 0.5rem;
+      padding-bottom: .5rem;
       position: relative;
     }
 
@@ -226,6 +226,10 @@
     /*This contains styles for form-control small icons and text*/
     .form-control.error small {
       visibility: visible;
+      display: block;
+      position: relative;
+      flex-direction: column;
+      padding-top: 0.5rem;
     }
 
 
@@ -246,8 +250,10 @@
     /*This contains style for eye icon*/
     .show-pass {
       position: absolute;
-      top: 50%;
-      right: 5%;
+      top: 48%;
+      right: 40%;
+      display: flex;
+      flex-basis: auto;
     }
 
     /*This contains styles for eye icon*/
