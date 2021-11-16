@@ -5,14 +5,19 @@ const mongoose = require("mongoose");
 const session = require('express-session');
 const passport = require('passport');
 const passportLocalMongoose = require("passport-local-mongoose");
-
+const multer = require("multer")
+const fs =  require("fs")
 const app = express();
+const fileupload = require("express-fileupload");
+
+
 
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use(fileupload())
 
 // setting up passport.js configurations for cookies and sessions
 app.use(session({
@@ -41,11 +46,24 @@ const nameSchema = new mongoose.Schema({
     dob: Date
 });
 
+const postSchema = new mongoose.Schema({
+    "post":String,
+    "img":String,
+
+},
+{
+    timestamps: true,
+  }
+
+);
+app.use('/public/uploads/', express.static('../public/uploads'));
+
 // hash and salt for encryption and save users to MongoDB
 userSchema.plugin(passportLocalMongoose)
 
 const User = new mongoose.model("User", userSchema)
 const Name = new mongoose.model("Name", nameSchema)
+const Post = new mongoose.model("Post", postSchema)
 
 
 // Simplified Passport/Passport-Local Configuration
@@ -84,16 +102,12 @@ app.get("/profile", function (req, res) {
     res.render("profile")
 })
 
-app.get("/feed", function (req, res) {
+app.get("/feed",async function (req, res) {
     if (req.isAuthenticated()) {
-        res.render("feed");
-        // User.find({}, function (firstname) {
-        //     res.render("feed");
-        //     firstName: firstname
-        // })
 
-        // res.sendFile(__dirname + "/views/feed.html")
-
+        const data =await Post.find();
+      
+        res.render("feed" , {data});
     }
     else {
         res.redirect("/login");
@@ -126,6 +140,57 @@ app.post("/register", function (req, res) {
             })
         }
     });
+
+})
+
+app.post("/post",  async function (req,   res) {
+
+    if(!req.files){
+                   //save the data in the database
+                   const justPostText = new Post({
+        
+                    post:req.body.post,
+                  
+                }
+                
+                )
+               const postRes= await justPostText.save()
+               if(postRes){
+                   
+                   res.redirect("/feed")
+               }
+               
+    }else{
+        var file = req.files.img;
+        var img_name=file.name;
+        
+        file.mv("../public/uploads/"+file.name,async function(err){
+          
+            if(err){
+                console.log("err");
+            }else{
+           
+        
+           //save the data in the database
+         const data = new Post({
+        
+             post:req.body.post,
+             img:"/public/uploads/"+img_name,
+         }
+         
+         )
+        const res= await data.save()
+        if(res){
+            
+            
+        }
+        
+            }
+        })
+        
+        res.redirect("/feed")
+        
+    }
 
 })
 
