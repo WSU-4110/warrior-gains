@@ -27,23 +27,23 @@
 </nav>
 
 <h2>Edit your profile</h2>
-<form id = "registerForm" method="post" action="/profile">
+<form id = "editProfile" method="post" action="/profile">
     Username:<input type="text" name="userName">
     Name:<input type="text" name="Name">
     Bio:<input type="text" name="Bio">
     link:<input type="text" name="link">
     <button type="Update">Update</button>
 </form>
-
+ 
 <script type="text/javascript">
-    // Policy object
-    const strategies = {
-      isNoEmpty: function (value, errorMsg) {
+    // implementing the strategy pattern here
+    const stratPattern = {
+      notEmpty: function (value, errorMsg) {
         if (value === '') {
           return errorMsg;
         }
       },
-      isNoSpace: function (value, errorMsg) {
+      noSpace: function (value, errorMsg) {
         if (value.trim() === '') {
           return errorMsg;
         }
@@ -58,66 +58,64 @@
           return errorMsg;
         }
       },
-      isMobile: function (value, errorMsg) {
-        if (!/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|17[7]|18[0|1|2|3|5|6|7|8|9])\d{8}$/.test(value)) {
-          return errorMsg;
-        }                
-      }
     }
-    // Validation class
-    class Validator {
+    // a calss to valadate 
+    class v {
       constructor() {
         this.cache = []
       }
       add(dom, rules) {
         for(let i = 0, rule; rule = rules[i++];) {
-          let strategyAry = rule.strategy.split(':')
+          let stratPatternAry = rule.stratPattern.split(':')
           let errorMsg = rule.errorMsg
           this.cache.push(() => {
-            let strategy = strategyAry.shift()
-            strategyAry.unshift(dom.value)
-            strategyAry.push(errorMsg)
-            return strategies[strategy].apply(dom, strategyAry)
+            let strategy = stratPatternAry.shift()
+            stratPatternAry.unshift(dom.value)
+            stratPatternAry.push(errorMsg)
+            return stratPattern[strategy].apply(dom, stratPatternAry)
           })
         }
       }
       start() {
-        for(let i = 0, validatorFunc; validatorFunc = this.cache[i++];) {
-          let errorMsg = validatorFunc()
+        for(let i = 0, vFunc; vFunc = this.cache[i++];) {
+          let errorMsg = vFunc()
           if (errorMsg) {
             return errorMsg
           }
         }
       }
     }
-    // Call code
-    let registerForm = document.getElementById('registerForm')
+    // Call it implement it.  
+    let editProfile = document.getElementById('editProfile')
 
-    let validataFunc = function() {
-      let validator = new Validator()
-      validator.add(registerForm.userName, [{
-        strategy: 'isNoEmpty',
+    let vFunc = function() {
+      let v = new V()
+      v.add(editProfile.userName, [{
+        strategy: 'notEmpty',
         errorMsg: 'User name cannot be empty'
       }, {
-        strategy: 'isNoSpace',
+        strategy: 'noSpace',
         errorMsg: 'Naming with white space characters is not allowed'
       }, {
-        strategy: 'minLength:2',
+        strategy: 'minLength:3',
         errorMsg: 'The length of user name cannot be less than 2 digits'
       }])
-      validator.add(registerForm.password, [ {
-        strategy: 'minLength:6',
-        errorMsg: 'The password length cannot be less than 6 digits'
+      v.add(editProfile.Name, [ {
+        strategy: 'notEmpty',
+        errorMsg: 'User name cannot be empty'
+      }, {
+        strategy: 'minLength:3',
+        errorMsg: 'The length of user name cannot be less than 3 digits'
       }])
-      validator.add(registerForm.phoneNumber, [{
-        strategy: 'isMobile',
-        errorMsg: 'Please input the correct mobile number format'
+      v.add(editProfile.Bio, [{
+        strategy: 'minLength:3',
+        errorMsg: 'The length of user name cannot be less than 3 digits'
       }])
-      return validator.start()
+      return v.start()
     }
 
-    registerForm.onsubmit = function() {
-      let errorMsg = validataFunc()
+    editProfile.onupdate = function() {
+      let errorMsg = vFunc()
       if (errorMsg) {
         alert(errorMsg)
         return false
