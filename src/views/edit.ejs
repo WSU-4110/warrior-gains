@@ -69,10 +69,10 @@
           let stratPatternAry = rule.stratPattern.split(':')
           let errorMsg = rule.errorMsg
           this.cache.push(() => {
-            let strategy = stratPatternAry.shift()
+            let stratPattern = stratPatternAry.shift()
             stratPatternAry.unshift(dom.value)
             stratPatternAry.push(errorMsg)
-            return stratPattern[strategy].apply(dom, stratPatternAry)
+            return stratPattern[stratPattern].apply(dom, stratPatternAry)
           })
         }
       }
@@ -91,25 +91,25 @@
     let vFunc = function() {
       let v = new V()
       v.add(editProfile.userName, [{
-        strategy: 'notEmpty',
-        errorMsg: 'User name cannot be empty'
+        stratPattern: 'notEmpty',
+        errorMsg: 'Username cannot be empty'
       }, {
-        strategy: 'noSpace',
-        errorMsg: 'Naming with white space characters is not allowed'
+        stratPattern: 'noSpace',
+        errorMsg: 'No white space is allowed'
       }, {
-        strategy: 'minLength:3',
-        errorMsg: 'The length of user name cannot be less than 2 digits'
+        stratPattern: 'minLength:3',
+        errorMsg: 'length of username cannot be less than 2 digits'
       }])
       v.add(editProfile.Name, [ {
-        strategy: 'notEmpty',
+        stratPattern: 'notEmpty',
         errorMsg: 'User name cannot be empty'
       }, {
-        strategy: 'minLength:3',
-        errorMsg: 'The length of user name cannot be less than 3 digits'
+        stratPattern: 'minLength:3',
+        errorMsg: 'length of user name cannot be less than 3 digits'
       }])
       v.add(editProfile.Bio, [{
         strategy: 'minLength:3',
-        errorMsg: 'The length of user name cannot be less than 3 digits'
+        errorMsg: 'length of user name cannot be less than 3 digits'
       }])
       return v.start()
     }
