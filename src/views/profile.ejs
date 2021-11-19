@@ -38,9 +38,7 @@
                 </div>
                 <div class="col-sm-12">
                     <div class="details">
-                        <% user.forEach(user => { %>
-                            <h2 class="name"><%= user.username %>&nbsp;<%= user.lname %></h2>
-                            <% }) %>
+                    
                         <div>Bio:</div>
                         <div>add a bio here</div>
                         <div>Link: *add links here*</div>
@@ -57,9 +55,7 @@
                                 <ul class="list-group">
                                     <li class="list-group-item">
                                         <blockquote>
-                                            <% user.forEach(user => { %>
-                                                <p><%= user.fname %>&nbsp;<%= user.lname %></p>
-                                                <% }) %>Hello World</p>
+                                           
                                                 <button class="btn" type="button" style="color:#eb3b60;"> 
                                                 <span> 5 Likes</span></button>
                                                 <button class="btn comment" type="button" style="color:#eb3b60;">
@@ -124,15 +120,12 @@
 </div>
 </div>
 <style>
-
  body {
         background-color: gainsboro;
     }
-
     .list-group-item{
         background-color: rgb(238, 245, 233);
     }  
-
    nav {
                 display: flex;
                 align-items: center;
@@ -143,33 +136,27 @@
                 top: 0;
                 z-index: 100; 
             }
-
             .nav-left, .nav-right {
                 display: flex;
                 align-items: center;
                 
             }
-
             .nav-left ul li {
                 list-style: none;
                 display: inline-block;
             }
-
             .nav-left ul li i {
                 width: 28px;
                 margin: 0 15px;
             }
-
             .nav-user-icon i {
                 width: 40px;
                 border-radius: 50%;
                 cursor: pointer;
             }
-
             .nav-user-icon {
                 margin-left: 30px;
             }
-
             .search-box {
                 background: #F2F3E9;
                 width: 350px;
@@ -178,12 +165,9 @@
                 align-items: center;
                 padding: 0 15px;
             }
-
             .search-box i {
                 width: 18px;
-
             }
-
             .search-box input {
                 width: 100%;
                 background: transparent;
@@ -191,7 +175,6 @@
                 outline: none;
                 border: 0;
             }
-
 .profile-widget {
   position: relative;
 }
@@ -216,8 +199,6 @@
   padding: 50px 15px 15px;
   text-align: center;
 }
-
-
 </style>
 
 

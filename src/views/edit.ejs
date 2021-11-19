@@ -27,25 +27,104 @@
 </nav>
 
 <h2>Edit your profile</h2>
-<form action="/profile" method="POST">
-  <div class="form-group">
-    <label for="Username">Username:</label>
-    <input type="text" class="form-control" name="Username" id="Username" placeholder="Username">
-  </div>
-  <div class="form-group">
-    <label for="name">Name</label>
-    <input type="text" class="form-control" name="Name<" id="Name<" placeholder="Name">
-  </div>
-  <div class="form-group">
-    <label for="Bio">Bio</label>
-    <input type="text" class="form-control" name="Bio" id="Bio" placeholder="Bio">
-  </div>
-  <div class="form-group">
-    <label for="Link">Link:</label>
-    <input type="text" class="form-control" name="Link" id="Link" placeholder="Link">
-  </div>
-  <button class="btn btn-primary">Update</button>
+<form id = "registerForm" method="post" action="/profile">
+    Username:<input type="text" name="userName">
+    Name:<input type="text" name="Name">
+    Bio:<input type="text" name="Bio">
+    link:<input type="text" name="link">
+    <button type="Update">Update</button>
 </form>
+
+<script type="text/javascript">
+    // Policy object
+    const strategies = {
+      isNoEmpty: function (value, errorMsg) {
+        if (value === '') {
+          return errorMsg;
+        }
+      },
+      isNoSpace: function (value, errorMsg) {
+        if (value.trim() === '') {
+          return errorMsg;
+        }
+      },
+      minLength: function (value, length, errorMsg) {
+        if (value.trim().length < length) {
+          return errorMsg;
+        }
+      },
+      maxLength: function (value, length, errorMsg) {
+        if (value.length > length) {
+          return errorMsg;
+        }
+      },
+      isMobile: function (value, errorMsg) {
+        if (!/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|17[7]|18[0|1|2|3|5|6|7|8|9])\d{8}$/.test(value)) {
+          return errorMsg;
+        }                
+      }
+    }
+    // Validation class
+    class Validator {
+      constructor() {
+        this.cache = []
+      }
+      add(dom, rules) {
+        for(let i = 0, rule; rule = rules[i++];) {
+          let strategyAry = rule.strategy.split(':')
+          let errorMsg = rule.errorMsg
+          this.cache.push(() => {
+            let strategy = strategyAry.shift()
+            strategyAry.unshift(dom.value)
+            strategyAry.push(errorMsg)
+            return strategies[strategy].apply(dom, strategyAry)
+          })
+        }
+      }
+      start() {
+        for(let i = 0, validatorFunc; validatorFunc = this.cache[i++];) {
+          let errorMsg = validatorFunc()
+          if (errorMsg) {
+            return errorMsg
+          }
+        }
+      }
+    }
+    // Call code
+    let registerForm = document.getElementById('registerForm')
+
+    let validataFunc = function() {
+      let validator = new Validator()
+      validator.add(registerForm.userName, [{
+        strategy: 'isNoEmpty',
+        errorMsg: 'User name cannot be empty'
+      }, {
+        strategy: 'isNoSpace',
+        errorMsg: 'Naming with white space characters is not allowed'
+      }, {
+        strategy: 'minLength:2',
+        errorMsg: 'The length of user name cannot be less than 2 digits'
+      }])
+      validator.add(registerForm.password, [ {
+        strategy: 'minLength:6',
+        errorMsg: 'The password length cannot be less than 6 digits'
+      }])
+      validator.add(registerForm.phoneNumber, [{
+        strategy: 'isMobile',
+        errorMsg: 'Please input the correct mobile number format'
+      }])
+      return validator.start()
+    }
+
+    registerForm.onsubmit = function() {
+      let errorMsg = validataFunc()
+      if (errorMsg) {
+        alert(errorMsg)
+        return false
+      }
+    }
+</script>
+
 <style>
    nav {
                 display: flex;
