@@ -1,23 +1,4 @@
-<%- include('partials/header') %>
-
-<div class="slider-container">
-  <div
-    class="slide active"
-    style="
-      background-image: url('https://media.istockphoto.com/photos/the-old-main-picture-id1193222675?b=1&k=20&m=1193222675&s=170667a&w=0&h=o--NjruaEofvq7EFUIBxJZQ5eQm6ipOrxDHPz0pAvrc=');
-    "
-  >
-  </div>
-  <h1>Warrior Gains!</h1>
-  <a class="btn btn-light btn-lg" href="/register" role="button" id="register-btn">Register</a>
-        
-  <a class="btn btn-dark btn-lg" href="/login" role="button" id="login-btn">Login</a>
-</div>
-
-
-<style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
   * {
     box-sizing: border-box;
   }
@@ -36,7 +17,6 @@
     background-size: cover;
     transition: 0.4s;
   }
-
   /*This includes styling for background and resizing capabilities*/
   body::before {
     content: '';
@@ -49,6 +29,20 @@
     z-index: -1;
   }
 
+  .flex-container {
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: #f1f1f1;
+  }
+  
+  .flex-container .box {
+    background-color: #f1f1f1;
+    width: 50%;
+    text-align: center;
+    line-height: 75px;
+    font-size: 30px;
+  }
+  
   /*This includes styles for Warrior Gains, and box surrounding text for resizing functionalities*/
   .slider-container {
     height: 70vh;
@@ -64,7 +58,6 @@
     text-align: center;
     
   }
-
   /*This contains styling for register and login buttons*/
   .slider-container a {
     color: darkgrey;
@@ -75,22 +68,3 @@
     padding-left: 10px;
     box-shadow: 1px 1px 1px black;
   }
-
-</style>
-
-<script>
-  const body = document.body
-  const slides = document.querySelectorAll('.slide')
-
-  let activeSlide = 0
-
-  setBgToBody()
-
-  /*Used JavaScript to set background image to cover screen*/ 
-  function setBgToBody() {
-    body.style.backgroundImage = slides[activeSlide].style.backgroundImage
-  }
-
-</script>
-
-<%- include('partials/footer') %>

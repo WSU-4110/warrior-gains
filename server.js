@@ -6,11 +6,10 @@ const session = require('express-session');
 const passport = require('passport');
 const passportLocalMongoose = require("passport-local-mongoose");
 const multer = require("multer")
-const fs =  require("fs")
+const fs = require("fs")
 const app = express();
+const cors = require("cors");
 const fileupload = require("express-fileupload");
-
-
 
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
@@ -30,7 +29,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Make database connection to local MongoDB
-mongoose.connect("mongodb://localhost:27017/userDB", { useNewUrlParser: true });
+mongoose.connect("mongodb+srv://OmarFaruk:CSC4110OFaruk@warrior-gains.qay9r.mongodb.net/usersDB?retryWrites=true&w=majority", { useNewUrlParser: true });
 
 
 // User credentials model
@@ -47,15 +46,16 @@ const nameSchema = new mongoose.Schema({
 });
 
 const postSchema = new mongoose.Schema({
-    "post":String,
-    "img":String,
+    "post": String,
+    "img": String,
 
 },
-{
-    timestamps: true,
-  }
+    {
+        timestamps: true,
+    }
 
 );
+
 app.use('/public/uploads/', express.static('../public/uploads'));
 
 // hash and salt for encryption and save users to MongoDB
@@ -84,7 +84,9 @@ passport.deserializeUser(function (id, done) {
 // });
 
 // Routes for users to traverse the webpage
-app.get("/", function (req, res) {
+app.use("/users/", require("./routes/usersRoute"));
+
+app.use("/home", function (req, res) {
     res.render("home")
 
 })
@@ -102,12 +104,12 @@ app.get("/profile", function (req, res) {
     res.render("profile")
 })
 
-app.get("/feed",async function (req, res) {
+app.get("/feed", async function (req, res) {
     if (req.isAuthenticated()) {
 
-        const data =await Post.find();
-      
-        res.render("feed" , {data});
+        const data = await Post.find();
+
+        res.render("feed", { data });
     }
     else {
         res.redirect("/login");
@@ -143,53 +145,53 @@ app.post("/register", function (req, res) {
 
 })
 
-app.post("/post",  async function (req,   res) {
+app.post("/post", async function (req, res) {
 
-    if(!req.files){
-                   //save the data in the database
-                   const justPostText = new Post({
-        
-                    post:req.body.post,
-                  
-                }
-                
-                )
-               const postRes= await justPostText.save()
-               if(postRes){
-                   
-                   res.redirect("/feed")
-               }
-               
-    }else{
-        var file = req.files.img;
-        var img_name=file.name;
-        
-        file.mv("../public/uploads/"+file.name,async function(err){
-          
-            if(err){
-                console.log("err");
-            }else{
-           
-        
-           //save the data in the database
-         const data = new Post({
-        
-             post:req.body.post,
-             img:"/public/uploads/"+img_name,
-         }
-         
-         )
-        const res= await data.save()
-        if(res){
-            
-            
+    if (!req.files) {
+        //save the data in the database
+        const justPostText = new Post({
+
+            post: req.body.post,
+
         }
-        
+
+        )
+        const postRes = await justPostText.save()
+        if (postRes) {
+
+            res.redirect("/feed")
+        }
+
+    } else {
+        var file = req.files.img;
+        var img_name = file.name;
+
+        file.mv("../public/uploads/" + file.name, async function (err) {
+
+            if (err) {
+                console.log("err");
+            } else {
+
+
+                //save the data in the database
+                const data = new Post({
+
+                    post: req.body.post,
+                    img: "/public/uploads/" + img_name,
+                }
+
+                )
+                const res = await data.save()
+                if (res) {
+
+
+                }
+
             }
         })
-        
+
         res.redirect("/feed")
-        
+
     }
 
 })
@@ -220,6 +222,8 @@ app.post('/login', passport.authenticate('local', {
     failureRedirect: '/login'
 }));
 
-app.listen(3000, function () {
-    console.log("Server started on port 3000.")
+app.listen(3001, function () {
+    console.log("Server started on port 3001.")
 });
+
+
