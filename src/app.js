@@ -10,8 +10,6 @@ const fs =  require("fs")
 const app = express();
 const fileupload = require("express-fileupload");
 
-
-
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({
@@ -30,7 +28,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Make database connection to local MongoDB
+
 mongoose.connect("mongodb://localhost:27017/userDB", { useNewUrlParser: true });
+
 
 
 // User credentials model
@@ -43,19 +43,48 @@ const userSchema = new mongoose.Schema({
 const nameSchema = new mongoose.Schema({
     fname: String,
     lname: String,
-    dob: Date
+    dob: Date,
+    email:String,
 });
 
-const postSchema = new mongoose.Schema({
-    "post":String,
-    "img":String,
-
-},
-{
+const postSchema = new mongoose.Schema(
+  {
+    post: String,
+    img: String,
+    user_details:{
+      type:mongoose.Schema.Types.ObjectId,
+      ref:'Name'
+    },
+    //schema modified
+    likes: [
+      {
+        user: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
+        },
+      },
+    ],
+    comments: [
+      {
+        user: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Name",
+        },
+        comment: String,
+      },
+    ],
+  },
+  {
     timestamps: true,
   }
-
 );
+
+
+
+
+
+
+
 app.use('/public/uploads/', express.static('../public/uploads'));
 
 // hash and salt for encryption and save users to MongoDB
@@ -102,17 +131,56 @@ app.get("/profile", function (req, res) {
     res.render("profile")
 })
 
-app.get("/feed",async function (req, res) {
-    if (req.isAuthenticated()) {
+app.get("/feed", async function (req, res) {
+  if (req.isAuthenticated()) {
+   
+    const data = await Post.find({}).
+    populate({
+      path:'comments',
+      populate:{
+        path:'user',
+        select:'fname lname'
+      }
+    }).
+    populate({
+      path:'user_details',
+      select:'fname lname'
+    })
+    
+    .sort({
+      createdAt: -1,
+    });
+   
 
-        const data =await Post.find();
-      
-        res.render("feed" , {data});
-    }
-    else {
-        res.redirect("/login");
-    }
-})
+    const user = await Name.findOne({
+      email: req.user.username,
+    });
+    
+    res.render("feed", { data, user });
+  } else {
+    res.redirect("/login");
+  }
+});
+app.get("/my-posts", async function (req, res) {
+  if (req.isAuthenticated()) {
+    const username=req.user.username;
+    const details=await Name.findOne({email:username})
+    const data = await Post.find({
+      user_details:details._id
+    }).sort({
+
+      createdAt: -1,
+    });
+    const user = await Name.findOne({
+      email: req.user.username,
+    });
+   
+    res.render("my-posts", { data, user });
+  } else {
+    res.redirect("/login");
+  }
+});
+
 
 app.get("/logout", function (req, res) {
     req.logout();
@@ -143,17 +211,17 @@ app.post("/register", function (req, res) {
 
 })
 
-app.post("/post",  async function (req,   res) {
+app.post("/post", async function (req,   res) {
+
 
     if(!req.files){
                    //save the data in the database
+                      const user = req.user.username;
+                      const detail=await Name.findOne({email:user});
                    const justPostText = new Post({
-        
-                    post:req.body.post,
-                  
-                }
-                
-                )
+                     post: req.body.post,
+                     user_details:detail._id
+                   });
                const postRes= await justPostText.save()
                if(postRes){
                    
@@ -161,32 +229,24 @@ app.post("/post",  async function (req,   res) {
                }
                
     }else{
-        var file = req.files.img;
-        var img_name=file.name;
+                const user = req.user.username;
+                
+                const detail = await Name.findOne({ email: user  });
         
-        file.mv("../public/uploads/"+file.name,async function(err){
-          
-            if(err){
-                console.log("err");
-            }else{
-           
-        
-           //save the data in the database
+ 
+           let returnedB64 = Buffer.from(req.files.img.data).toString("base64");
          const data = new Post({
-        
-             post:req.body.post,
-             img:"/public/uploads/"+img_name,
-         }
-         
-         )
-        const res= await data.save()
-        if(res){
+           user,
+           post: req.body.post,
+           img: returnedB64,
+           user_details: detail._id,
+         });
+        const res1= await data.save()
+        if(res1){
             
             
         }
-        
-            }
-        })
+      
         
         res.redirect("/feed")
         
@@ -214,6 +274,55 @@ app.post("/post",  async function (req,   res) {
 //         }
 //     });
 // });
+
+
+//post update 
+
+
+app.post("/update-post", async function (req, res) {
+  if (!req.files) {
+    //save the data in the database
+  
+    const {id,post}=req.body;
+    const postRes = await Post.findOneAndUpdate(
+      { _id: id },
+      {
+        post,
+      }
+    );
+    if (postRes) {
+      res.redirect("/feed");
+    }
+    
+  } else {
+    var file = req.files.img;
+    var img_name = file.name;
+
+    file.mv("../public/uploads/" + file.name, async function (err) {
+      if (err) {
+        console.log("err");
+      } else {
+        //save the data in the database
+       
+        const { id, post } = req.body;
+        const res = await Post.findOneAndUpdate(
+          { _id: id },
+          {
+            post,
+            img: "/public/uploads/" + img_name,
+          }
+        );
+      
+        if (res) {
+        }
+      }
+    });
+
+    res.redirect("/feed");
+  }
+});
+
+
 
 app.post('/login', passport.authenticate('local', {
     successRedirect: '/feed',
