@@ -46,6 +46,7 @@
         <!--left-side-bar-->
         <div class="left-sidebar">
             <div class="imp-links">
+                <a href="/feed"><i class="fas fa-home"></i> Home</a> 
                 <a href="#"><i class="far fa-newspaper"></i> News</a>
                 <a href="/my-posts"><i class="far fa-newspaper"></i> My Posts</a>
                 <a href="#"><i class="fas fa-user-friends"></i> Friends</a>
@@ -122,7 +123,7 @@
                                <a href="/edit-post?id=<%= item._id %>">Edit</a>
                                <form method="post" action="/delete-post">
                                    <input type="hidden" name="postId" value="<%= item._id %>" />
-                                   <input type="submit" value="Delete" style="border-color: red; background-color: red;color: white;width: 50px; height: 40px;" />  
+                                   <input type="submit" value="Delete" style="border-color: red; background-color: red;color: white;width: 50px; height: 30px; cursor: pointer; border-radius: 10%; margin-top: 8px;" />  
                                </form>
                             </td>
                     </tr>
@@ -536,11 +537,12 @@
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
+  border-radius: 10%;
 }
 
 #posts td, #posts th {
   border: 1px solid #ddd;
-  padding: 8px;
+  padding: 6px;
 }
 
 #posts tr:nth-child(even){background-color: #f2f2f2;}
@@ -548,11 +550,23 @@
 #posts tr:hover {background-color: #ddd;}
 
 #posts th {
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: 8px;
+  padding-bottom: 8px;
   text-align: left;
-  background-color: #04AA6D;
+  background-color: forestgreen;
+  color: whitesmoke;
+}
+
+#posts a {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 11px;
+  padding-right: 11px;
+  text-align: center;
+  background-color: forestgreen;
   color: white;
+  text-decoration: none;
+  border-radius: 10%;
 }
 
     </style>
