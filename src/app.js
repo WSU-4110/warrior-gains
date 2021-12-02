@@ -274,9 +274,90 @@ app.post("/post", async function (req,   res) {
 //         }
 //     });
 // });
+//like dislike
 
+
+app.post('/add-comment',async function(req,res){
+  if (req.isAuthenticated()) {
+    console.log(req.user);
+    const {comment,postId,user}=req.body;
+    const commentTodAdd={
+        user,
+        comment
+    }
+    await Post.findByIdAndUpdate(postId,{
+        $push:{
+            comments:commentTodAdd
+        }
+    })
+    res.redirect('/feed')
+  }  
+});
+app.post('/like-dislike',async function(req,res){
+  if (req.isAuthenticated()) {
+   const {user,id}=req.body;
+    try {
+      const isLiked = await Post.findOne({
+        'likes.user':user,
+        _id: id,
+      });
+      console.log("already");
+
+      if (isLiked) {
+        await Post.findByIdAndUpdate(isLiked._id, {
+          $pull: {
+            likes: {
+              user: user,
+            },
+          },
+        });
+        return res.status(200).json({
+          success: true,
+          message: "Disliked",
+        });
+      } else {
+         const likeToAdd = {
+           user
+         };
+         await Post.findByIdAndUpdate(id, {
+           $push: {
+             likes: likeToAdd,
+           },
+         });
+        return res.status(200).json({
+          success: true,
+          message: "Liked",
+        });
+      }
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        error: "Server Error",
+      });
+    }
+  }  
+})
 
 //post update 
+
+
+
+
+
+app.get("/edit-post", async function (req, res) {
+  const {id}=req.query;
+  const post=await Post.findById(id);
+   if(!post){
+     return res.redirect('/my-posts');
+   } 
+  
+   const user = await Name.findOne({
+     username: req.user.username,
+   });
+   res.render("edit-post", { data:post,user });
+  
+});
+
 
 
 app.post("/update-post", async function (req, res) {
@@ -321,6 +402,22 @@ app.post("/update-post", async function (req, res) {
     res.redirect("/feed");
   }
 });
+
+
+
+
+//delete update 
+
+
+app.post("/delete-post", async function (req, res) {
+  const { postId } = req.body;
+
+  const deleted = await Post.findByIdAndDelete(postId);
+
+
+  res.redirect("/my-posts");
+});
+
 
 
 
