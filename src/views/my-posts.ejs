@@ -1,0 +1,560 @@
+<%- include('partials/header') %>
+
+    <!--Opy include these logos to replace texts-->
+    <!--<i class="fas fa-house-user"></i>
+            <i class="fas fa-users"></i>
+            <i class="fas fa-envelope-square"></i>
+            <i class="far fa-user-circle"></i>
+            <i class="fas fa-cog"></i>-->
+
+    <!--<section id="rightSideLinks">-->
+
+
+
+
+
+    <nav>
+        <div class="nav-left">
+            <h1 class="logo">Warrior Gains</h1>
+            <ul>
+
+                <!--<li><img src="/notification.png" ></li>-->
+                <li><i class="far fa-bell"></i></li>
+                <!--<li><img src="/inbox.png" ></li>-->
+                <li><i class="fas fa-inbox"></i></li>
+                <!--<li><img src="/video.png" ></li>-->
+                <li><i class="fas fa-video"></i></li>
+            </ul>
+        </div>
+        <div class="nav-right">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search">
+            </div>
+
+            <div class="nav-user-icon online">
+                <i class="fas fa-users"></i>
+            </div>
+
+
+            <a class="btn btn-dark btn-lg" role="button" href="/" id="logOut"><i class="fas fa-sign-out-alt"></i>Log
+                Out</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!--left-side-bar-->
+        <div class="left-sidebar">
+            <div class="imp-links">
+                <a href="#"><i class="far fa-newspaper"></i> News</a>
+                <a href="/my-posts"><i class="far fa-newspaper"></i> My Posts</a>
+                <a href="#"><i class="fas fa-user-friends"></i> Friends</a>
+                <a href="#"><i class="fas fa-layer-group"></i> Groups</a>
+                <a href="#">See More</a>
+            </div>
+
+
+        </div>
+
+        <!--main-content-->
+        <div class="main-content">
+
+            <div class="write-post-container">
+                <div class="user-profile">
+                    <img
+                        src="https://images.unsplash.com/photo-1549237511-6b64e006ce65?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80">
+                    <div>
+                        <p>
+                            <%= user.fname %>
+                        </p>
+                        <small>
+                            Public <i class="fas fa-sort-down"></i>
+                        </small>
+                    </div>
+                </div>
+
+                <div class="post-input-container">
+                    <form action="/post" method="POST" enctype="multipart/form-data">
+
+
+                        <textarea rows="3" placeholder="What's on your mind?" name="post"></textarea>
+                        <div class="add-post-links">
+                            <input type="file" style="width: 100%;" name="img">
+
+                            <button style=" display: block;
+                      background: #568B22;
+                       padding: 5px; color: #fff;
+                        cursor: pointer;">Post</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <h3 style="margin: 10px;">My Posts</h3>
+        <table id="posts">
+            <tr>
+            <th>Image</th>
+            <th>Description</th>
+            <th>Created At</th>
+            <th>Actions</th>
+            </tr>
+
+                <% data.forEach(function(item) { %>
+                
+                    <tr>
+                        <td>
+                              <% if(item.img ){ %>
+                            <img src=" data:image/png;base64, <%= item.img %>" style="width: 40px; height: 40px; border-radius:50% ;">
+
+                                  <% } %>
+                          
+                        </td>
+                        <td>
+                        
+                            <%= item.post %>
+                        </td>
+                            <td>
+                            
+                                <%= item.createdAt.toDateString('yyyy-MM-dd') %>
+                            </td>
+                            <td>
+                            
+                               <a href="/edit-post?id=<%= item._id %>">Edit</a>
+                               <form method="post" action="/delete-post">
+                                   <input type="hidden" name="postId" value="<%= item._id %>" />
+                                   <input type="submit" value="Delete" style="border-color: red; background-color: red;color: white;width: 50px; height: 40px;" />  
+                               </form>
+                            </td>
+                    </tr>
+                
+                
+                
+                
+                    <% }); %>
+ 
+
+
+
+            <tr>
+               
+
+
+
+
+
+
+            </tr>
+        </table>
+
+     
+
+    </div>
+
+    <!--right-side-bar-->
+    <div class="right-sidebar">
+        <div class="sidebar-title">
+            <h4>Events</h4>
+            <a href="#">See All</a>
+        </div>
+
+        <div class="event">
+            <div class="left-event">
+                <h3>5</h3>
+                <span>November</span>
+            </div>
+
+            <div class="right-event">
+                <h4>WSU vs Michigan</h4>
+                <p> <i class="fas fa-map-marker-alt"></i> WSU Fieldhouse</p>
+                <a href="#">More info</a>
+            </div>
+        </div>
+        <div class="sidebar-title">
+            <h4>Conversations</h4>
+            <a href="#">Hide Chat</a>
+        </div>
+
+        <div class="online-list">
+            <div class="online">
+                <img
+                    src="https://images.unsplash.com/photo-1552105755-df705f179020?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=737&q=80">
+            </div>
+            <p>John Doe</p>
+        </div>
+        <div class="online-list">
+            <div class="online">
+                <img
+                    src="https://images.unsplash.com/photo-1565463281984-f5a778c6ca80?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=735&q=80">
+            </div>
+            <p>Jane Doe</p>
+        </div>
+        <div class="online-list">
+            <div class="online">
+                <img
+                    src="https://images.unsplash.com/flagged/photo-1572561701232-6c3bc9ef5aea?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80">
+            </div>
+            <p>Jimmy Doe</p>
+        </div>
+
+
+    </div>
+
+
+    </div>
+
+
+    <style>
+        /*This contains styling for general, background*/
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'poppins', sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: gainsboro;
+        }
+
+        /*This contains styling for navigation*/
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: gainsboro;
+            padding: 5px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        h1 {
+            color: forestgreen;
+            transform: skew(-10deg);
+        }
+
+        .logo {
+            width: 160px;
+            margin-right: 45px;
+        }
+
+        .nav-left,
+        .nav-right {
+            display: flex;
+            align-items: center;
+
+        }
+
+        .nav-left ul li {
+            list-style: none;
+            display: inline-block;
+        }
+
+        .nav-left ul li i {
+            width: 28px;
+            margin: 0 15px;
+        }
+
+        .nav-user-icon i {
+            width: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .nav-user-icon {
+            margin-left: 30px;
+        }
+
+        .search-box {
+            background: #F2F3E9;
+            width: 350px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+        }
+
+        .search-box i {
+            width: 18px;
+
+        }
+
+        .search-box input {
+            width: 100%;
+            background: transparent;
+            padding: 10px;
+            outline: none;
+            border: 0;
+        }
+
+        .online {
+            position: relative;
+        }
+
+        /*This contains styling for "online" indicator*/
+
+        /*.online::after {
+                content: '';
+                width: 7px;
+                height: 7px;
+                border: 2px solid gainsboro;
+                border-radius: 50%;
+                background: #41db51;
+                position: absolute;
+                top: 0;
+                right: 0;
+            }*/
+
+
+        /*This contains styling for body/feed page*/
+        .container {
+            display: flex;
+            justify-content: space-between;
+            padding: 13px 5%;
+        }
+
+
+        /*This contains styling for left-sidebar*/
+        .left-sidebar {
+
+            flex-basis: 25%;
+            position: sticky;
+            top: 70px;
+            align-self: flex-start;
+
+        }
+
+
+        /*This contains styling for right-sidebar*/
+        .right-sidebar {
+            background: #F2F3E9;
+            flex-basis: 25%;
+            position: sticky;
+            top: 70px;
+            align-self: flex-start;
+            padding: 20px;
+            border-radius: 4px;
+            color: #626262;
+
+        }
+
+
+        /*This contains styling for middle part of the body, main content of the feed*/
+        .main-content {
+            flex-basis: 47%;
+        }
+
+        .imp-links a {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            color: #626262;
+            width: fit-content;
+        }
+
+        .imp-links a i {
+            width: 25px;
+            margin-right: 15px;
+        }
+
+        .imp-links a:last-child {
+            color: green;
+        }
+
+        .imp-links {
+            border-bottom: 1px solid #ccc;
+        }
+
+        .sidebar-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+        }
+
+        .right-sidebar h4 {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .sidebar-title a {
+            text-decoration: none;
+            color: green;
+            font-size: 12px;
+        }
+
+        .event {
+            display: flex;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .left-event {
+            border-radius: 10px;
+            height: 65px;
+            width: 65px;
+            margin-right: 15px;
+            padding-top: 10px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .event p {
+            font-size: 12px;
+        }
+
+        .event a {
+            font-size: 12px;
+            text-decoration: none;
+            color: green;
+        }
+
+        .left-event span {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: green;
+            color: white;
+            font-size: 10px;
+            padding: 4px 0;
+        }
+
+        .online-list {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .online-list .online img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .online-list .online {
+            width: 40px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .online-list .online::after {
+            top: unset;
+            bottom: 5px;
+        }
+
+        #logOut {
+            display: flex;
+            text-decoration: none;
+            color: #626262;
+        }
+
+        .write-post-container {
+            width: 100%;
+            background: whitesmoke;
+            border-radius: 6px;
+            padding: 20px;
+            color: #626262;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-profile img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .user-profile p {
+            margin-bottom: -5px;
+            font-weight: 500;
+            color: #626262;
+        }
+
+        .user-profile small {
+            font-size: 12px;
+        }
+
+        .post-input-container {
+            padding-left: 55px;
+            padding-top: 20px;
+        }
+
+        .post-input-container textarea {
+            width: 100%;
+            border: 0;
+            outline: 0;
+            border-bottom: 1px solid #ccc;
+            background: transparent;
+            resize: none;
+        }
+
+        .add-post-links {
+            display: flex;
+            margin-top: 10px;
+        }
+
+        .add-post-links a {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            color: #626262;
+            margin-right: 30px;
+            font-size: 13px;
+        }
+
+        .add-post-links a i {
+            width: 20px;
+            margin-right: 10px;
+        }
+
+        .post-container {
+            width: 100%;
+            background: whitesmoke;
+            border-radius: 6px;
+            padding: 20px;
+            color: #626262;
+            margin: 20px 0;
+        }
+
+        .user-profile span {
+            font-size: 13px;
+            color: #9a9a9a;
+        }
+
+
+/* Table Design */
+#posts {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#posts td, #posts th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#posts tr:nth-child(even){background-color: #f2f2f2;}
+
+#posts tr:hover {background-color: #ddd;}
+
+#posts th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+
+    </style>
+
+    <%- include('partials/footer') %>
