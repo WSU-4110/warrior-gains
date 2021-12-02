@@ -67,7 +67,10 @@ function addLikeDislike(data) {
   });
 }
 
-
+function myFunction() {
+   var element = document.body;
+   element.classList.toggle("dark-mode");
+}
 
     </script>
 
@@ -104,12 +107,13 @@ function addLikeDislike(data) {
         <!--left-side-bar-->
         <div class="left-sidebar">
             <div class="imp-links">
+                
                 <a href="/feed"><i class="fas fa-home"></i> Home</a>
                 <a href="#"><i class="far fa-newspaper"></i> News</a>
                  <a href="/my-posts"><i class="far fa-newspaper"></i> My Posts</a>
                 <a href="#"><i class="fas fa-user-friends"></i> Friends</a>
                 <a href="#"><i class="fas fa-layer-group"></i> Groups</a>
-                <a href="#">See More</a>
+                <button onclick="myFunction()">Dark mode</button>
             </div>
 
             
@@ -143,9 +147,9 @@ function addLikeDislike(data) {
                      style=" display: block;
                       background: #568B22;
                        padding: 5px; color: #fff;
-                        cursor: pointer;"
+                        cursor: pointer; border-radius: 20px;"
                     
-                        >Post</button>
+                        > Post</button>
                     </form>
                     </div>
                 </div>
@@ -253,9 +257,9 @@ function addLikeDislike(data) {
 
                                 </span>
                                 <form style="width:65%; display: flex;justify-content: space-between;" method="post" action="/add-comment">
-                                    <input type="text" name="comment" placeholder="Comment" style="width: 100%; padding: 8px;">     
+                                    <input type="text" name="comment" placeholder="Comment" style="width: 100%; padding: 8px; border-radius: 10px;">     
                                     <button
-                                        style="color: white; background: #626262; border: none;text-decoration: none;padding: 5px 10px; border-radius: 5px; font-size: 12px;margin-left: 5px;">Add
+                                        style="color: white; background: #626262; border: none;text-decoration: none;padding: 5px 10px; border-radius: 10px; font-size: 12px;margin-left: 5px; width: 90px;justify-content: center; cursor: pointer;">Add
                                         Comment</button>
                                         <input type="hidden" name="postId" value="<%= item._id %>" /><input type="hidden" name="user" value="<%= user._id %>" />
                                 </form>
@@ -266,6 +270,7 @@ function addLikeDislike(data) {
                                     <% item.comments.forEach(function(comment) { %>                          
                                     <li style="border-bottom:1px solid #b6b6b683;padding:5px;font-size: 13px;">
                                         <span style="color:green"><%= comment.user.fname %> <%= comment.user.lname %>:</span> <%= comment.comment %>
+                                        
                                     </li>
                                     <% }); %>
                                 </ul>
@@ -382,12 +387,12 @@ function addLikeDislike(data) {
                 margin: 0 15px;
             }
             .unlike {
-  cursor: pointer;
-}
-.like {
-  cursor: pointer;
-  color: #09a;
-}
+                cursor: pointer;
+            }
+            .like {
+                cursor: pointer;
+                color: #09a;
+            }
             .nav-user-icon i {
                 width: 40px;
                 border-radius: 50%;
@@ -497,6 +502,15 @@ function addLikeDislike(data) {
 
             .imp-links {
                 border-bottom: 1px solid #ccc;
+            }
+
+            .imp-links button {
+                background-color: #626262;
+                color: whitesmoke;
+                cursor: pointer;
+                border-radius: 20px;
+                padding-left: 5px;
+                padding-right: 5px;
             }
 
             .sidebar-title {
@@ -655,11 +669,17 @@ function addLikeDislike(data) {
                 padding: 20px;
                 color: #626262;
                 margin: 20px 0;
+                margin-top: 20px;
             }
 
             .user-profile span{
                 font-size: 13px;
                 color: #9a9a9a;
+            }
+
+            .dark-mode {
+                background-color: black;
+                color: forestgreen; 
             }
             
     
