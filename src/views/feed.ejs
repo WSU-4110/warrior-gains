@@ -24,6 +24,51 @@
         // })
 
 
+$("body").delegate(".like,.unlike", "click", function () {
+  var id = $(this).attr("data-id");
+  
+  var user = $(this).attr("data-user-id");
+  var count = $("#" + id).html();
+  count = count.trim();
+  
+  var type = $(this).attr("data-type");
+  if (type == "like") {
+    count--;
+    $(this).removeClass("like");
+    $(this).addClass("unlike");
+    $(this).attr("data-type", "unlike");
+    $("#" + id).html(count);
+  } else {
+    count++;
+    $("#" + id).html(count);
+    $(this).attr("data-type", "like");
+    $(this).removeClass("unlike");
+    $(this).addClass("like");
+  }
+
+  var data = {
+    user: user,
+    id: id,
+    type: type,
+  };
+  console.log({data})
+  addLikeDislike(data);
+});
+
+function addLikeDislike(data) {
+  $.ajax({
+    type: "POST",
+    url: "http://localhost:3000/like-dislike",
+    dataType: "json",
+    data: data,
+    success: function (result) {
+      console.log(result);
+    },
+  });
+}
+
+
+
     </script>
 
 
@@ -116,7 +161,7 @@
                                     item.user_details.fname 
                                     %>
                                     <%=
-                                            item.user_details.lname 
+                                      item.user_details.lname 
 
                                     %>
 
@@ -144,6 +189,66 @@
                             <div style="margin-top: 5px;width: 100%; display: flex;">
                                 <span style="padding: 5px; margin-top: 5px;">
 
+
+
+
+
+
+
+ <!-- Like Start -->
+            <div class="card-footer">
+              <% if(item.likes.length>0 ){ %>
+              <!-- Start Loop -->
+              <% var isLiked =false %> <% for(var j=0; j <
+              item.likes.length; j++) { %>
+              <!-- Setting Varabile -->
+              <!-- Ending Variable -->
+              <% var cUser=user._id %>
+              <% var lUser=item.likes[j].user %>
+              <% if(cUser.toString()==lUser.toString()){ %> 
+
+                 
+
+                <% isLiked=true %> <%
+              } %> 
+              <% } %>
+             
+            
+
+              <!-- Last If -->
+              <% if(isLiked==true){ %>
+              <i
+                class="fa fa-thumbs-up like"
+                data-id="<%= item._id %>"
+                data-user-id="<%= user._id %>"
+                data-type="like"
+              ></i>
+              <% }else { %>
+              <i
+                class="fa fa-thumbs-up unlike"
+                data-id="<%= item._id %>"
+                data-user-id="<%= user._id %>"
+                data-type="unlike"
+              ></i>
+              <% } %>
+              <!-- Last If End -->
+              <!-- End Loopt -->
+               <span id="<%= item._id %>">
+                <%= item.likes.length %>
+              </span>
+              
+              
+              <% }else { %>
+              <i
+                class="fa fa-thumbs-up unlike"
+                data-id="<%= item._id %>"
+                data-user-id="<%= user._id %>"
+                data-type="unlike"
+              ></i>
+              <span id="<%= item._id %>"> 0 </span>
+              <% } %>
+            </div>
+            <!-- Like End -->
 
                                 </span>
                                 <form style="width:65%; display: flex;justify-content: space-between;" method="post" action="/add-comment">
@@ -276,13 +381,12 @@
                 margin: 0 15px;
             }
             .unlike {
-                  cursor: pointer;
-            }
-            
-            .like {
-                 cursor: pointer;
-                 color: #09a;
-            }
+  cursor: pointer;
+}
+.like {
+  cursor: pointer;
+  color: #09a;
+}
             .nav-user-icon i {
                 width: 40px;
                 border-radius: 50%;
