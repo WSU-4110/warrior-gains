@@ -51,7 +51,7 @@
                  <a href="/my-posts"><i class="far fa-newspaper"></i> My Posts</a>
                 <a href="#"><i class="fas fa-user-friends"></i> Friends</a>
                 <a href="#"><i class="fas fa-layer-group"></i> Groups</a>
-                <a href="#">See More</a>
+                <button onclick="myFunction()">Dark mode</button> 
             </div>
 
 
@@ -85,7 +85,7 @@
                             <button style=" display: block;
                       background: #568B22;
                        padding: 5px; color: #fff;
-                        cursor: pointer;">Post</button>
+                        cursor: pointer; border-radius: 20px;">Post</button>
                     </form>
                 </div>
             </div>
@@ -314,6 +314,15 @@
             border-bottom: 1px solid #ccc;
         }
 
+        .imp-links button {
+            background-color: #626262;
+            color: whitesmoke;
+            cursor: pointer;
+            border-radius: 20px;
+            padding-left: 5px;
+            padding-right: 5px;
+        } 
+
         .sidebar-title {
             display: flex;
             align-items: center;
@@ -477,6 +486,16 @@
             color: #9a9a9a;
         }
 
+        .dark-mode {
+            background-color: black;
+            color: forestgreen; 
+        }
+
+        .dark-mode-links {
+            background-color: black;
+            color: forestgreen; 
+        }
+
 
         /* Table Design */
         #posts {
@@ -507,5 +526,13 @@
             color: white;
         }
     </style>
+
+    <script>
+        function myFunction() {
+            var element = document.body;
+            element.classList.toggle("dark-mode");
+            //element.classList.toggle("dark-mode-links");
+        }
+    </script>
 
     <%- include('partials/footer') %>
