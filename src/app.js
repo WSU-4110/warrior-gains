@@ -131,6 +131,9 @@ app.get("/profile", function (req, res) {
     res.render("profile")
 })
 
+app.get("/edit", function (req, res) {
+  res.render("edit")
+})
 app.get("/feed", async function (req, res) {
   if (req.isAuthenticated()) {
    
