@@ -26,6 +26,8 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.json());
+
 
 // Make database connection to local MongoDB
 
@@ -126,11 +128,21 @@ app.get("/login", function (req, res) {
 app.get("/register", function (req, res) {
     res.render("register")
 })
+///---------------------------------------------------------------------------------------------------------
 
-app.get("/profile", function (req, res) {
-    res.render("profile")
+app.get('/profile', function(req, res, next) {
+
+    var user = req.user;
+    res.render('profile', { title: 'profile', user: req.user });
+});
+
+app.get("/edit", function (req, res) {
+    res.render("edit")
 })
 
+app.get("/edit", function (req, res) {
+  res.render("edit")
+})
 app.get("/feed", async function (req, res) {
   if (req.isAuthenticated()) {
    
