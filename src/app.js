@@ -38,7 +38,7 @@ mongoose.connect("mongodb://localhost:27017/userDB", { useNewUrlParser: true });
 // User credentials model
 const userSchema = new mongoose.Schema({
     email: String,
-    password: String,
+    password: String,  
 });
 
 // User info model
@@ -110,6 +110,7 @@ passport.deserializeUser(function (id, done) {
     });
 });
 
+
 // passport.deserializeUser(function (user, done) {
 //     done(null, user);
 // });
@@ -130,19 +131,34 @@ app.get("/register", function (req, res) {
 })
 ///---------------------------------------------------------------------------------------------------------
 
-app.get('/profile', function(req, res, next) {
+app.get("/profile", async function (req, res) {
+  if (req.isAuthenticated()) {
+    const username=req.user.username;
+    const details=await Name.findOne({email:username})
+    const data = await Post.find({
+      user_details:details._id
+    }).sort({
 
-    var user = req.user;
-    res.render('profile', { title: 'profile', user: req.user });
+      createdAt: -1,
+    });
+    const user = await Name.findOne({
+      email: req.user.username,
+    });
+   
+    res.render("profile", { data, user });
+  } else {
+    res.redirect("/login");
+  }
 });
+
+
+
 
 app.get("/edit", function (req, res) {
     res.render("edit")
 })
 
-app.get("/edit", function (req, res) {
-  res.render("edit")
-})
+
 app.get("/feed", async function (req, res) {
   if (req.isAuthenticated()) {
    
@@ -265,6 +281,9 @@ app.post("/post", async function (req,   res) {
     }
 
 })
+
+//----------------------------------------------------------
+
 
 //If the user is able to login with email and password, they will be redirected to feed page
 
