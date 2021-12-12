@@ -85,6 +85,8 @@
     </div>
   </section>
 
+  <!--<meta name="viewport" content="width=device-width" />-->
+
   <!--<script src="script.js"></script>-->
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap");
@@ -191,12 +193,15 @@
 
     /*This contains styles for form-control input box*/
     .form-control input {
-      display: block;
+      /*display: block;*/
       border: 2px solid var(--grey);
       border-radius: 3px;
       width: 100%;
       padding: 1rem;
       font-size: 1.4rem;
+
+      display: inline-block;
+      position: relative;
     }
 
 
@@ -252,8 +257,7 @@
       position: absolute;
       top: 48%;
       right: 40%;
-      display: flex;
-      flex-basis: auto;
+      display: inline-block;
     }
 
     /*This contains styles for eye icon*/
@@ -311,6 +315,26 @@
     .fa-check {
       color: #02b502;
     }
+
+    /*This contains styles to make the eye responsive*/
+    @media screen and (max-width: 777px) {
+      .show-pass {
+        position: relative;
+        top: -182px;
+        right: -92%;
+        
+      }
+    }
+
+    @media screen and (max-width: 1000px) {
+      .show-pass {
+        position: relative;
+        top: -182px;
+        right: -92%;
+        
+      }
+    }
+
   </style>
 
   <script>

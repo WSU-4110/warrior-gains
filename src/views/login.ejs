@@ -22,6 +22,7 @@
         </span>
 
         <button>Submit</button>
+        <a class="btn btn-dark btn-lg" href="/forgot" role="button" id="forgot-btn">Forgot password?</a>
       </form>
     </div>
   </section>
@@ -132,12 +133,17 @@
 
     /*This contains styles for form-control input box*/
     .form-control input {
-      display: block;
+      /*display: block;*/
       border: 2px solid var(--grey);
       border-radius: 3px;
       width: 100%;
       padding: 1rem;
       font-size: 1.4rem;
+
+      display: inline-block;
+      position: relative;
+      /*border: none;
+      outline: none;*/
     }
 
     .form-control input:focus {
@@ -179,11 +185,31 @@
       cursor: pointer;
     }
 
+    /*This contains styles for form link*/ 
+    form a {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: var(--color-sec);
+      border: none;
+      outline: none;
+      color: var(--white);
+      padding: 1rem;
+      font-size: 1.6rem;
+      margin-top: 1rem;
+      border-radius: 3px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
     /*This contains style for eye icon*/
     .show-pass {
       position: absolute;
-      top: 55%;
+      top: 51.5%;
       right: 40%;
+
+      display: inline-block;
     }
 
     /*This contains styles for eye icon*/
@@ -219,6 +245,27 @@
     /*This contains styles for form circle*/
     .fa-circle {
       font-size: 6px;
+    }
+
+    /*This contains styles to make the eye responsive*/
+    @media screen and (max-width: 777px) {
+      .show-pass {
+        position: relative;
+        top: -52px;
+        right: -92%;
+        display: inline-block;
+      }
+
+    }
+
+    @media screen and (max-width: 1000px) {
+      .show-pass {
+        position: relative;
+        top: -52px;
+        right: -92%;
+        display: inline-block;
+      }
+
     }
   </style>
 
