@@ -1,0 +1,21 @@
+<%- include('partials/header') %>
+
+    <section class="forgotPage">
+        <div class="container box">
+            <form action="/forgot" method="POST">
+                <h2>Forgot Password</h2>
+
+                <div class="form-control">
+                    <label for="email">Email</label>
+                    <input type="email" name="username" placeholder="Enter Email" id="email" />
+                </div>
+
+                <button>Reset Password</button>
+                <!-- Only to access reset page for design -->
+                <a class="" href="/reset" role="button" id="reset-btn">Acces reset password page/ TEMP</a>
+
+            </form>
+        </div>
+    </section>
+
+    <%- include('partials/footer') %>

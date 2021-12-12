@@ -1,0 +1,23 @@
+<%- include('partials/header') %>
+
+    <section class="resetPage">
+        <div class="container box">
+            <form action="/reset" method="POST">
+                <h2>Reset Password</h2>
+
+                <div class="form-control">
+                    <label for="password">New Password</label>
+                    <input type="password" name="password" placeholder="Enter new password" id="password" />
+                </div>
+
+                <div class="form-control">
+                    <label for="confirm">New Password</label>
+                    <input type="password" name="confirm" placeholder="Confirm new password" id="password" />
+                </div>
+
+                <button>Update Password</button>
+            </form>
+        </div>
+    </section>
+
+    <%- include('partials/footer') %>
