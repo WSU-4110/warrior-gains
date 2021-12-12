@@ -33,7 +33,7 @@
             </div>
 
             <div class="nav-user-icon online">
-                <i class="fas fa-users"></i>
+                <a href="/profile"> <i class="fas fa-users"></i></a>
             </div>
 
 
@@ -106,16 +106,12 @@
                         <td>
                               <% if(item.img ){ %>
                             <img src=" data:image/png;base64, <%= item.img %>" style="width: 40px; height: 40px; border-radius:50% ;">
-
-                                  <% } %>
-                          
+                                  <% } %>                          
                         </td>
                         <td>
-                        
-                            <%= item.post %>
+                         <%= item.post %>
                         </td>
-                            <td>
-                            
+                            <td>                       
                                 <%= item.createdAt.toDateString('yyyy-MM-dd') %>
                             </td>
                             <td>
