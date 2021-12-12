@@ -48,77 +48,82 @@
             <div class="profile-widget">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="image-container" style="background-color:rgb(62, 196, 62);">  
+                        <div class="image-container" style="background-color:green;">  
                             <img src="https://images.unsplash.com/photo-1549237511-6b64e006ce65?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" class="avatar" alt="avatar"> 
                         </div>
                     </div>
                     <div class="col-sm-12">
-                        <div class="details">                              
-                            <h2><%= user.fname %> <%= user.lname %></h2>
-                            <div>Bio: Welcome to my Profile</div>                          
+                        <div class="details">
+                        
+                            
+                            <h3><%= user.fname %> <%= user.lname %></h3>
+                            <div>Bio: Welcome to my Profile</div>  
                             <div class="mg-top-10">
                                 <a class="btn btn-dark btn-lg" role="button"  href="/edit">Edit Profile</a>
                             </div>
                         </div>
                     </div>  
-
-                        <div class="post-container">
-                        <h2>My Posts</h2>
-                        <br>
-                       
-                        <table id="posts">
-                                   
-                            <% data.forEach(function(item) { %>                            
-                            
-                            <tr><h3><%= user.fname %> <%= user.lname %></h3></tr>
-                            <tr>
-                                 <% if(item.img ){ %>
-                                <img src=" data:image/png;base64, <%= item.img %>">               
-                                 <% } %>                                         
-                            </tr>
-                            <br>
-
-                            <tr>                                      
-                               <b> <%= item.post %></b>
-                            </tr>
-                            <br>
-                            
-
-                            <tr>                                           
-                               <i> <%= item.createdAt.toDateString('yyyy-MM-dd') %></i>
-                            </tr>
-                            <br>
-                            <tr>                                           
-                                
-                                <form method="post" action="/delete-post">
-                                 <input type="hidden" name="postId" value="<%= item._id %>" />
-                                 <input type="submit" value="Delete" style="border-color: red; background-color: red;color: white;width: 50px; height: 30px; cursor: pointer; border-radius: 10px; margin-top: 8px;" />  
-                                 </form>
-                             </tr>
-                             <br>
-                             <br>
-                             <br>
-                             <br>
-                             <br>
-
-                             
-                                                                                                                                                      
-                                    <% }); %>               
-                          
-                        </table>
+            <div>
+                <div class="post-container">
+                    <h2>My Posts</h2>
+                    <br>
+                   
+                    <table id="posts">
+                               
+                        <% data.forEach(function(item) { %>                            
                         
-                        </div>
+                        <tr><h3><%= user.fname %> <%= user.lname %></h3></tr>
+                        <tr>
+                             <% if(item.img ){ %>
+                            <img src=" data:image/png;base64, <%= item.img %>">               
+                             <% } %>                                         
+                        </tr>
+                        <br>
+
+                        <tr>                                      
+                           <b> <%= item.post %></b>
+                        </tr>
+                        <br>
+                        
+
+                        <tr>                                           
+                           <i> <%= item.createdAt.toDateString('yyyy-MM-dd') %></i>
+                        </tr>
+                        <br>
+                        <tr>                                           
+                            
+                            <form method="post" action="/delete-post">
+                             <input type="hidden" name="postId" value="<%= item._id %>" />
+                             <input type="submit" value="Delete" style="border-color: red; background-color: red;color: white;width: 50px; height: 30px; cursor: pointer; border-radius: 10px; margin-top: 8px;" />  
+                             </form>
+                         </tr>
+                         <br>
+                         <br>
+                         <br>
+                         <br>
+                         <br>
+
+                         
+                                                                                                                                                  
+                                <% }); %>               
+                      
+                    </table>
+                    
                     </div>
-                </div>   
+
+
+
+                
             </div>
                 </div>
-            </div>              
-        </div>        
-    </div>
-   
+            </div>  
+            
 
- 
-    
+            
+        </div>
+        
+    </div>
+
     <div class="container">
         <div class="row">
             <div class="col-sm-8 col-sm-offset-2">
@@ -278,8 +283,7 @@ function myFunction() {
 
     /*This contains styling for middle part of the body, main content of the feed*/
     .main-content {
-        flex-basis: 50%;
-        
+        flex-basis: 47%;
     }
 
     .imp-links a{
