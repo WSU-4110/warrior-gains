@@ -220,6 +220,11 @@ app.get("/my-posts", async function (req, res) {
   }
 });
 
+app.get("/follow", function (req, res) {
+  res.render("follow")
+
+})
+
 
 app.get("/logout", function (req, res) {
   req.logout();

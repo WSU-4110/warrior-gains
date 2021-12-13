@@ -58,48 +58,7 @@
         </div>
 
 
-        <!--main-content-->
-        <div class="main-content">
-
-            <div class="write-post-container">
-                <div class="user-profile">
-                    <img
-                        src="https://images.unsplash.com/photo-1549237511-6b64e006ce65?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80">
-                    <div>
-                        <p>
-                            <%= user.fname %>
-                        </p>
-                        <small>
-                            Public <i class="fas fa-sort-down"></i>
-                        </small>
-                    </div>
-                </div>
-
-                <div class="post-input-container">
-                    <form action="/update-post" method="POST" enctype="multipart/form-data">
-
-
-                        <textarea rows="3" placeholder="What's on your mind?" name="post"><%= data.post %></textarea>
-                        <div class="add-post-links">
-                            <input type="file" style="width: 100%;" name="img">
-                            <input type="hidden" name="id" value="<%= data._id %>" />
-                            <button style=" display: block;
-                      background: #568B22;
-                       padding: 5px; color: #fff;
-                        cursor: pointer; border-radius: 20px;">Post</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-
-        
-
- 
-
-
-
-    </div>
+       
 
     <!--right-side-bar-->
     <div class="right-sidebar">
