@@ -9,6 +9,7 @@ const multer = require("multer")
 const fs = require("fs")
 const app = express();
 const fileupload = require("express-fileupload");
+const request = require('supertest');
 
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
@@ -118,20 +119,23 @@ passport.deserializeUser(function (id, done) {
 // Routes for users to traverse the webpage
 app.get("/", function (req, res) {
   res.render("home")
-
+  return res.status(200).json({ data: User });
 })
 
 app.get("/login", function (req, res) {
   res.render("login")
+  return res.status(200).json({ data: User });
 
 })
 
 app.get("/register", function (req, res) {
   res.render("register")
+  return res.status(200).json({ data: User });
 })
 
 app.get("/forgot", function (req, res) {
   res.render("forgot")
+  return res.status(200).json({ data: User });
 
 })
 
@@ -224,6 +228,7 @@ app.get("/my-posts", async function (req, res) {
 app.get("/logout", function (req, res) {
   req.logout();
   res.redirect("/");
+  return res.status(200).json({ data: User });
 })
 
 // If the user is able to register successfully, they may have access to feed page
@@ -248,6 +253,7 @@ app.post("/register", function (req, res) {
     }
   });
 
+  return res.status(201).json({ data: fakeDB });
 })
 
 app.post("/post", async function (req, res) {
@@ -468,6 +474,4 @@ app.post('/login', passport.authenticate('local', {
   failureRedirect: '/login'
 }));
 
-app.listen(3000, function () {
-  console.log("Server started on port 3000.")
-});
+export default app
