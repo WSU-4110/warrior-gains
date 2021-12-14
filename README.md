@@ -1,4 +1,11 @@
-# Getting Started with Create React App
+## Introduction 
+Warrior gains is a social media platform that revolves around fitness and health. This is created for Wayne state students who like working out. Out platform, helps connect students with each other in the same niche. Users can post, like, and interact with other users on this platform.
+
+## Features 
+
+
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
