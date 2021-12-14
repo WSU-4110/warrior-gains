@@ -2,7 +2,20 @@
 Warrior gains is a social media platform that revolves around fitness and health. This is created for Wayne state students who like working out. Out platform, helps connect students with each other in the same niche. Users can post, like, and interact with other users on this platform.
 
 ## Features 
-
+* Users can create an account and start interacting 
+* Users can post a status or a picture on the platform 
+* Ability to like 
+* Ability to comment 
+* Users have access to a profile page
+* Edit profile
+* Users can see their post
+* Edit Post
+* Delete post
+* Cookies and Cache
+* Dark mode feature 
+* User login 
+* User registration 
+* Forget/reset password Feature 
 
 
 ## Getting Started with Create React App
