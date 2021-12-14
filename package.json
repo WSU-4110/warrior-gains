@@ -15,10 +15,10 @@
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
     "express-session": "^1.17.2",
-    "firebase": "^9.6.0",
-    "fs": "^0.0.1-security",
+    "firebase": "^9.6.1",
+    "fs": "0.0.1-security",
     "md5": "^2.3.0",
-    "mongodb": "^4.2.1",
+    "mongodb": "^4.2.2",
     "mongoose": "^6.1.1",
     "mongoose-encryption": "^2.1.2",
     "multer": "^1.4.4",
@@ -36,7 +36,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -56,5 +56,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "jest": "^27.4.5",
+    "supertest": "^6.1.6"
   }
 }

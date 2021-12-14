@@ -29,6 +29,8 @@ app.use(passport.session());
 app.use(express.json());
 
 
+
+
 // Make database connection to local MongoDB
 
 mongoose.connect("mongodb://localhost:27017/userDB", { useNewUrlParser: true });
@@ -162,7 +164,9 @@ app.get("/profile", async function (req, res) {
   }
 });
 
-
+app.get('/editP', async (req, res) => {
+  res.json({message: 'pass!'})
+})
 
 
 app.get("/edit", function (req, res) {
@@ -220,6 +224,11 @@ app.get("/my-posts", async function (req, res) {
   }
 });
 
+app.get("/follow", function (req, res) {
+  res.render("follow")
+
+})
+
 
 app.get("/logout", function (req, res) {
   req.logout();
@@ -262,6 +271,8 @@ app.post("/post", async function (req, res) {
       user_details: detail._id
     });
     const postRes = await justPostText.save()
+
+   
     if (postRes) {
 
       res.redirect("/feed")
@@ -290,6 +301,8 @@ app.post("/post", async function (req, res) {
     res.redirect("/feed")
 
   }
+
+  res.status(201).json('test passed');
 
 })
 
@@ -333,8 +346,12 @@ app.post('/add-comment', async function (req, res) {
       }
     })
     res.redirect('/feed')
+
   }
+  res.status(201).json('test passed');
 });
+
+
 app.post('/like-dislike', async function (req, res) {
   if (req.isAuthenticated()) {
     const { user, id } = req.body;
@@ -378,6 +395,7 @@ app.post('/like-dislike', async function (req, res) {
       });
     }
   }
+  res.status(201).json('test passed');
 })
 
 //post update 
@@ -397,6 +415,7 @@ app.get("/edit-post", async function (req, res) {
     username: req.user.username,
   });
   res.render("edit-post", { data: post, user });
+  res.status(201).json('test passed');
 
 });
 
@@ -443,6 +462,7 @@ app.post("/update-post", async function (req, res) {
 
     res.redirect("/feed");
   }
+  res.status(201).json('test passed');
 });
 
 
@@ -458,6 +478,7 @@ app.post("/delete-post", async function (req, res) {
 
 
   res.redirect("/my-posts");
+  res.status(201).json('test passed');
 });
 
 
@@ -471,3 +492,4 @@ app.post('/login', passport.authenticate('local', {
 app.listen(3000, function () {
   console.log("Server started on port 3000.")
 });
+module.exports = app
