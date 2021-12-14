@@ -93,7 +93,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 * [Md Sayem Ahmed](https://github.com/MdSayemAhmed)
 * [Al-Taimee Hassan](https://github.com/altaimeh)
 * [Omar Faruk](https://github.com/omar-faruk01)
-* [Opy ALi](https://github.com/OpyAli)
+* [Opy Ali](https://github.com/OpyAli)
 
 ## Wiki
 For detailed project overview and planning, please visit wiki: https://github.com/WSU-4110/warrior-gains/wiki
